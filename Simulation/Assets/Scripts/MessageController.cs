@@ -9,7 +9,7 @@ public class MessageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        collider = circleCollider.GetComponent<CircleCollider2D>();
+    collider = circleCollider.GetComponent<CircleCollider2D>();
     }
     
     void OnCollisionEnter2D(Collision2D collision)

@@ -15,7 +15,7 @@ public class DragManager : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
              Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
              if(targetObject)

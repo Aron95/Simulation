@@ -5,18 +5,8 @@ using UnityEngine;
 public class CollisionController : MonoBehaviour
 {
 
-    public GameObject shooterScript;
-    
-    void start(){
-        //GameObject parent = this.transform.parent; 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger");
     }
-    
-    
-    void OnCollisionEnter2D(Collision2D collision)
-       {
-           if (collision.gameObject.tag == "NetworkSphere")
-           {
-               Debug.Log("Collison111");
-           }
-       }
 }
