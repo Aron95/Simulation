@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour
 {
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger");
+        if (collision.gameObject.tag == "NetworkSphere")
+        {
+            Debug.Log("Collison111");
+            transform.parent.GetComponent<MessageShooter>().shootMessageDot(collision);
+        }
     }
 }

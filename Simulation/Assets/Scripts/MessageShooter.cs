@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MessageShooter : MonoBehaviour
 {
+    public GameObject Dot;
     public GameObject messageDot;
     
 
 
-    void shootMessageDot(){
-        Instantiate(messageDot);
+    public void shootMessageDot( Collider2D collider ){
+        Dot = Instantiate(messageDot,transform.position,transform.rotation);
     }
 }

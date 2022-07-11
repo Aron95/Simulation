@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3504801728441739757}
   - component: {fileID: 7824060843931794297}
+  - component: {fileID: -1481025589818880174}
   m_Layer: 0
   m_Name: MessageDot
   m_TagString: Untagged
@@ -82,3 +83,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-1481025589818880174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709550456525404855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffce229a614e0a4b80135dc09db8cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
