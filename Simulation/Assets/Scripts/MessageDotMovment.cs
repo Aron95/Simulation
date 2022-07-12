@@ -15,12 +15,17 @@ public class MessageDotMovment : MonoBehaviour
     {
         if (check)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 1.0f);
+            Debug.Log("check");
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.02f);
+            if(transform.position == target.transform.position)
+            {
+                destroyObject();
+            }
         }
         
     }
 
-    void moveToTarget(Collider2D collider)
+    public void moveToTarget(Collider2D collider)
     {
         target = collider;
         check = true;
@@ -28,7 +33,8 @@ public class MessageDotMovment : MonoBehaviour
 
     void destroyObject()
     {
+        Debug.Log("Destory");
         check = false;
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

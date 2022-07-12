@@ -11,5 +11,6 @@ public class MessageShooter : MonoBehaviour
 
     public void shootMessageDot( Collider2D collider ){
         Dot = Instantiate(messageDot,transform.position,transform.rotation);
+        Dot.GetComponent<MessageDotMovment>().moveToTarget(collider);
     }
 }
