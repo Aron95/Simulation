@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour
+public class Networkmanager : MonoBehaviour
 {
-
-    
-    
     // Start is called before the first frame update
     void Start()
     {

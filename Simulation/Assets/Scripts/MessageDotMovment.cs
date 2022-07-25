@@ -16,7 +16,7 @@ public class MessageDotMovment : MonoBehaviour
         if (check)
         {
             Debug.Log("check");
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.02f);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.01f);
             if(transform.position == target.transform.position)
             {
                 destroyObject();

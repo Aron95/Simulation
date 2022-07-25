@@ -6,6 +6,7 @@ public class MessageController : MonoBehaviour
 {
     public GameObject circleCollider;
     public CircleCollider2D collider;
+    public GameObject[] singelHopeRange;
     // Start is called before the first frame update
     void Start()
     {
