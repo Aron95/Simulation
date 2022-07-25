@@ -17,13 +17,14 @@ public class CollisionController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("OnTriggerExit");
-        if (other.gameObject.tag == "NetworkSphere")
+        if (collision.gameObject.tag == "NetworkSphere")
         {
-            Debug.Log("Remove" + other.gameObject.name);
-            nearNeighbour.Remove(other.gameObject);
+            Debug.Log("Remove" + collision.gameObject.name);
+            nearNeighbour.Remove(collision.gameObject);
         }
     }
 }
