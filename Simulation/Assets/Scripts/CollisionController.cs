@@ -27,4 +27,9 @@ public class CollisionController : MonoBehaviour
             nearNeighbour.Remove(collision.gameObject);
         }
     }
+
+    public List<GameObject> getNeighbours()
+    {
+        return nearNeighbour;
+    }
 }
