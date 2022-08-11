@@ -10,7 +10,7 @@ public class CollisionController : MonoBehaviour
     {
         if (collision.gameObject.tag == "NetworkSphere" && collision.gameObject != transform.parent.gameObject)
         {
-     
+            
             Debug.Log("Node "+ transform.parent.name + " enters range of "+collision.gameObject.name);   /* TODO Implement Node Name*/
             transform.parent.GetComponent<MessageShooter>().shootMessageDot(collision);
             nearNeighbour.Add(collision.gameObject);
@@ -25,6 +25,11 @@ public class CollisionController : MonoBehaviour
         {
             Debug.Log("Remove" + collision.gameObject.name);
             nearNeighbour.Remove(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Message")
+        {
+            Debug.Log("Got Message");
         }
     }
 

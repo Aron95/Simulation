@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NetworkSphere
   - Message
+  - Node
   layers:
   - Default
   - TransparentFX

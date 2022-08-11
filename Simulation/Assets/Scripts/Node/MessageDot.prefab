@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1481025589818880174}
   - component: {fileID: -5866395973430391175}
   - component: {fileID: -3708098034497230255}
+  - component: {fileID: -319067728041215820}
   m_Layer: 0
   m_Name: MessageDot
   m_TagString: Message
@@ -129,9 +130,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-319067728041215820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3709550456525404855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80db7cb0edf193949a45a0abb5cefc79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
