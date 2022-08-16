@@ -28,34 +28,29 @@ public class messageContent : MonoBehaviour
     public int typ;
     public int id;
     public float version;
-    public int ip;
+    public int ip;// Wird in MessageDotMovment gesetzt
 
 
     // Start is called before the first frame update
     void Start()
     {
-        riskLvl = 9001;
-        content = "Alienangriff";
-        region  = new string []{ "welt","mond"};
-        validAfter = "2022-11-11-11-11";
-        validUntil = "2022-11-11-11-12";
-        typ = 666;
-        id = 0815;
-        version = 1.0f;
-        getIp();
+  
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void fillMessage(messageContent message,int ip)
     {
-        
+        this.riskLvl = message.riskLvl;
+        this.content = message.content;
+        this.region = message.region;
+        this.validUntil = message.validUntil;
+        this.validAfter = message.validAfter;
+        this.typ = message.typ;
+        this.id = message.id;
+        this.version = message.version;
+        this.ip = ip;
     }
 
-    public int getIp()
-    {
-
-        return 1;
-    }
 
     public void handleData(Collider2D target)
     {

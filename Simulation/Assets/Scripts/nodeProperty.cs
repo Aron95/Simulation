@@ -5,8 +5,8 @@ using UnityEngine;
 public class nodeProperty : MonoBehaviour
 {
     public int ip;
-   
-
+    public List<GameObject> nearNeighbour;
+    
     public Dictionary<messageContent, List<int>> messageTable = 
         new Dictionary<messageContent, List<int>>();  
     // Start is called before the first frame update
@@ -26,7 +26,30 @@ public class nodeProperty : MonoBehaviour
         List<int> ips = new List<int>();
         ips.Add(message.ip);
         messageTable.Add(message, ips);
-        printDict();
+        routeMessage(message);
+        //TODO: checkDict 
+    }
+
+    public void routeMessage(messageContent message)
+    {
+        nearNeighbour = transform.GetChild(0).GetComponent<CollisionController>().nearNeighbour;
+
+        List<int> ips = new List<int>();
+        messageTable.TryGetValue(message,out ips);
+
+        foreach (GameObject neighbour in nearNeighbour)
+        {
+            if(!(ips.Contains(neighbour.GetComponent<nodeProperty>().ip)))
+            {
+                GetComponent<MessageShooter>().shootMessageDot(neighbour.GetComponent<Collider2D>(),message);
+            }
+        }
+        Debug.Log("routeMessage"+nearNeighbour);
+    }
+
+    public void checkDict(messageContent message)
+    {
+        /* TODO: Check if Message is in DICT messageTable*/
     }
 
     public void printDict()
@@ -38,6 +61,4 @@ public class nodeProperty : MonoBehaviour
             Debug.Log("Key = "+ kvp.Key + ", Value = " + string.Join(", ",kvp.Value ));
         }
     }
-
-
 }

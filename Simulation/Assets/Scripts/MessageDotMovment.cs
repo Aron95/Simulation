@@ -25,11 +25,10 @@ public class MessageDotMovment : MonoBehaviour
         
     }
 
-    public void moveToTarget(Collider2D collider,int ip)
+    public void moveToTarget(Collider2D collider)
     {
         target = collider;
         check = true;
-        GetComponent<messageContent>().ip = ip;
     }
 
     void destroyObject()
