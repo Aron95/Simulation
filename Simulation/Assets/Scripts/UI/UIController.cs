@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public Canvas canvas;
+    public Canvas canvasBTN;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +18,10 @@ public class UIController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Escape pushed");
-            if (canvas.isActiveAndEnabled)
-                canvas.enabled = false;
+            if (canvasBTN.isActiveAndEnabled)
+                canvasBTN.enabled = false;
             else
-                canvas.enabled = true;
+                canvasBTN.enabled = true;
         }
     }
 }
