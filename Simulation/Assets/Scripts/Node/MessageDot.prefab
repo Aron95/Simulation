@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5866395973430391175}
   - component: {fileID: -3708098034497230255}
   - component: {fileID: -319067728041215820}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MessageDot
   m_TagString: Message
   m_Icon: {fileID: 0}
@@ -148,3 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db7cb0edf193949a45a0abb5cefc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  riskLvl: 1
+  content: Test
+  region: []
+  validUntil: 
+  validAfter: 
+  typ: 0
+  id: 0
+  version: 0
+  ip: 0
