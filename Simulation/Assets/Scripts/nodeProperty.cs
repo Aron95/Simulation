@@ -22,6 +22,7 @@ public class nodeProperty : MonoBehaviour
     {
         SortedSet<int> ips = new SortedSet<int>();
         ips.Add(message.ip);
+
         if(!(messageTable.ContainsKey(message)))
         {
             messageTable.Add(message, ips);
@@ -31,9 +32,7 @@ public class nodeProperty : MonoBehaviour
         {
             messageTable.TryGetValue(message, out ips);
             ips.Add(message.ip);
-        }
-
-       
+        }   
     }
     public void routeMessage(messageContent message)
     {
