@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionController : MonoBehaviour
 {
     public List<GameObject> nearNeighbour = new List<GameObject>();
-    public Dictionary<messageContent, List<int>> messageTable;
+    public Dictionary<messageContent, SortedSet<int>> messageTable;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class CollisionController : MonoBehaviour
             nearNeighbour.Add(collision.gameObject);
             messageTable = GetComponentInParent<nodeProperty>().messageTable;
 
-            foreach (KeyValuePair<messageContent, List<int>> kvp in messageTable)
+            foreach (KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)
             {
                 if (!(kvp.Value.Contains(collision.GetComponent<nodeProperty>().ip)))
                 {
