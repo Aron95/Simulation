@@ -10,7 +10,7 @@ public class messageCreater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        message = new messageContent();
+        message = gameObject.AddComponent<messageContent>();
         message.riskLvl = 9001;
         message.content = "Alienangriff";
         message.region = new string[] { "welt", "mond" };

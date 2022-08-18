@@ -8,7 +8,7 @@ public class nodeProperty : MonoBehaviour
     public List<GameObject> nearNeighbour;
     
     public Dictionary<messageContent, List<int>> messageTable = 
-        new Dictionary<messageContent, List<int>>();  
+        new Dictionary<messageContent, List<int>>(new MessageCompare());  
     // Start is called before the first frame update
     void Start()
     {
@@ -16,17 +16,18 @@ public class nodeProperty : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
     public void addData(messageContent message)
     {
         List<int> ips = new List<int>();
         ips.Add(message.ip);
-        messageTable.Add(message, ips);
-        routeMessage(message);
+        if(!(messageTable.ContainsKey(message)))
+        {
+            messageTable.Add(message, ips);
+            routeMessage(message);
+        }
+
         //TODO: checkDict 
     }
 
@@ -47,10 +48,6 @@ public class nodeProperty : MonoBehaviour
         Debug.Log("routeMessage"+nearNeighbour);
     }
 
-    public void checkDict(messageContent message)
-    {
-        /* TODO: Check if Message is in DICT messageTable*/
-    }
 
     public void printDict()
     {

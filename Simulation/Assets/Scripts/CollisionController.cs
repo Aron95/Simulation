@@ -12,6 +12,9 @@ public class CollisionController : MonoBehaviour
         
     }
 
+
+    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NetworkSphere" && collision.gameObject != transform.parent.gameObject)
@@ -20,11 +23,12 @@ public class CollisionController : MonoBehaviour
             Debug.Log("Node "+ transform.parent.name + " enters range of "+collision.gameObject.name);   /* TODO Implement Node Name*/
             nearNeighbour.Add(collision.gameObject);
             messageTable = GetComponentInParent<nodeProperty>().messageTable;
+
             foreach (KeyValuePair<messageContent, List<int>> kvp in messageTable)
             {
                 if (!(kvp.Value.Contains(collision.GetComponent<nodeProperty>().ip)))
                 {
-                    GetComponent<MessageShooter>().shootMessageDot(collision.GetComponent<Collider2D>(), kvp.Key);
+                    GetComponentInParent<MessageShooter>().shootMessageDot(collision.GetComponent<Collider2D>(), kvp.Key);
                 }
             }
 
