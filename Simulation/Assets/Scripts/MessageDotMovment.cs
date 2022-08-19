@@ -16,8 +16,8 @@ public class MessageDotMovment : MonoBehaviour
     {
         if (check)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.002f);
-            if((target.transform.position -transform.position).magnitude < 0.4f )
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.012f);
+            if((target.transform.position -transform.position).magnitude < 0.2f )
             {
                destroyObject();
             }
@@ -25,11 +25,10 @@ public class MessageDotMovment : MonoBehaviour
         
     }
 
-    public void moveToTarget(Collider2D collider,int ip)
+    public void moveToTarget(Collider2D collider)
     {
         target = collider;
         check = true;
-        GetComponent<messageContent>().ip = ip;
     }
 
     void destroyObject()

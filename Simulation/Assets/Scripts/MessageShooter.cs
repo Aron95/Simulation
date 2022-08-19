@@ -9,10 +9,11 @@ public class MessageShooter : MonoBehaviour
     
 
 
-    public void shootMessageDot( Collider2D collider ){
+    public void shootMessageDot( Collider2D collider, messageContent message ){
 
         int ip = GetComponent<nodeProperty>().ip;
         Dot = Instantiate(messageDot,transform.position,transform.rotation);
-        Dot.GetComponent<MessageDotMovment>().moveToTarget(collider,ip);
+        Dot.GetComponent<messageContent>().fillMessage(message, GetComponent<nodeProperty>().ip);
+        Dot.GetComponent<MessageDotMovment>().moveToTarget(collider);
     }
 }

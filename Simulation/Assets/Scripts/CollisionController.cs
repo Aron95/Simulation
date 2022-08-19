@@ -5,6 +5,15 @@ using UnityEngine;
 public class CollisionController : MonoBehaviour
 {
     public List<GameObject> nearNeighbour = new List<GameObject>();
+    public Dictionary<messageContent, SortedSet<int>> messageTable;
+
+    private void Start()
+    {
+        
+    }
+
+
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,8 +21,17 @@ public class CollisionController : MonoBehaviour
         {
             
             Debug.Log("Node "+ transform.parent.name + " enters range of "+collision.gameObject.name);   /* TODO Implement Node Name*/
-            transform.parent.GetComponent<MessageShooter>().shootMessageDot(collision);
             nearNeighbour.Add(collision.gameObject);
+            messageTable = GetComponentInParent<nodeProperty>().messageTable;
+
+            foreach (KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)
+            {
+                if (!(kvp.Value.Contains(collision.GetComponent<nodeProperty>().ip)))
+                {
+                    GetComponentInParent<MessageShooter>().shootMessageDot(collision.GetComponent<Collider2D>(), kvp.Key);
+                }
+            }
+
         }
     }
 
