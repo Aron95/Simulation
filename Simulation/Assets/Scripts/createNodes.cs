@@ -10,24 +10,20 @@ public class createNodes : MonoBehaviour
     public GameObject Node;
     Vector2 spawnPoint =new Vector2(0,0); 
     
-    // Start is called before the first frame update
+    // Creates nodecount amount of nodes in the form of a grid
     void Start()
     {
-        for(int i =0; i<nodeCount;i++)
+        int nodes = Mathf.RoundToInt(Mathf.Sqrt(nodeCount));
+        for(int i =0; i< nodes; i++)
         {
-            for(int j =0;j< nodeCount;j++)
+            spawnPoint.x = 2 * i;
+            for(int j =0;j< nodes; j++)
             {
-                Instantiate(Node, spawnPoint, transform.rotation);
-                spawnPoint.x = 2 * i;
                 spawnPoint.y = 2 * j;
+                Instantiate(Node, spawnPoint, transform.rotation); // actually creates nodes
             }
         }
             
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

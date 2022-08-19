@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// currently unused
 public class CelllularBase : MonoBehaviour
 {
     string [] cellularBaseIPS;

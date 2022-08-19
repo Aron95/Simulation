@@ -991,7 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb546529f20a1e45aa5e3b48ee0b2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeCount: 35
+  nodeCount: 200
   Node: {fileID: 3311565983596797737, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
 --- !u!1 &668656251
 GameObject:
@@ -1181,6 +1181,10 @@ PrefabInstance:
     - target: {fileID: 101804420668957670, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}
       propertyPath: m_Name
       value: Campus_Koblenz (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 101804420668957670, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}
@@ -2363,6 +2367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node
       objectReference: {fileID: 0}
+    - target: {fileID: 3311565983596797737, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3311565983596797739, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2831,6 +2839,10 @@ PrefabInstance:
     - target: {fileID: 101804420668957670, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}
       propertyPath: m_Name
       value: Campus_Koblenz
+      objectReference: {fileID: 0}
+    - target: {fileID: 101804420668957670, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}

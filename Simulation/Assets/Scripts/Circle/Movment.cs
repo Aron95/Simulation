@@ -7,7 +7,7 @@ public class Movment : MonoBehaviour
     public GameObject circle;
   
 
-    // Update is called once per frame
+    // rotates the outer dotted circle of a node
     void Update()
     {
         circle.transform.Rotate(0, 0, 1);

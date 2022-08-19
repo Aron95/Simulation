@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// handles node collision with other nodes
 public class CollisionController : MonoBehaviour
 {
     public List<GameObject> nearNeighbour = new List<GameObject>();
     public Dictionary<messageContent, SortedSet<int>> messageTable;
 
-    private void Start()
-    {
-        
-    }
-
-
-    
-
+    // triggers when Node collides with other Node
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "NetworkSphere" && collision.gameObject != transform.parent.gameObject)
@@ -35,7 +29,7 @@ public class CollisionController : MonoBehaviour
         }
     }
 
-
+    // triggers when Node no longer collides with other Node
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("OnTriggerExit");

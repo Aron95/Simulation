@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-
+// handles dragging nodes in game view and highlighting selected node
 public class DragManager : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
-    public GameObject  selectedObject;
+    public GameObject selectedObject;
     public GameObject halo;
     Vector3 offset;
     public Canvas canvasNode;
     public TextMeshProUGUI textIp;
+    
     // Update is called once per frame
     void Update()
     {
@@ -37,7 +38,7 @@ public class DragManager : MonoBehaviour
              }
 
 
-            if (selectedObject)
+            if (selectedObject) // moves selected object and enables node outline/"halo"
             {
                 selectedObject.transform.position = mousePosition + offset;
                 halo = selectedObject.transform.GetChild(1).gameObject;
@@ -46,7 +47,7 @@ public class DragManager : MonoBehaviour
             }
    
         }
-        else if (Input.GetMouseButton(1) && selectedObject)
+        else if (Input.GetMouseButton(1) && selectedObject) // disables node outline/"halo"
         {
             Debug.Log("Derefence Halo");
             spriteRenderer.enabled = false;
@@ -59,7 +60,7 @@ public class DragManager : MonoBehaviour
 
 
 
-
+    // UI to show Node information
     public void loadNodeUi(GameObject selectedGameObject)
     {
         int ip = selectedGameObject.GetComponent<nodeProperty>().ip;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// not used yet
 public class Node : MonoBehaviour
 {
 

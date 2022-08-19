@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// controls camera in gameview
 public class CameraController : MonoBehaviour
 {
-  
-    
-
         public float zoomSpeed = 1;
         public float targetOrtho;
         public float smoothSpeed = 2.0f;

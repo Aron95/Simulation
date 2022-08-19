@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// contains all information of a node and handles decision-making within node
 public class nodeProperty : MonoBehaviour
 {
     public int ip;
     public List<GameObject> nearNeighbour;
     
+    // keeps track of which nodes alreay have message
     public Dictionary<messageContent, SortedSet<int>> messageTable = 
         new Dictionary<messageContent, SortedSet<int>>(new MessageCompare());  
-    // Start is called before the first frame update
+    
+    
+    // gets a random IP from the main camera when Node is created / game is started
     void Start()
     {
         ip = Camera.main.GetComponent<ipProvider>().getRnd();
     }
-
-    // Update is called once per frame
   
 
+    // handles storing incoming message
     public void addData(messageContent message)
     {
         SortedSet<int> ips = new SortedSet<int>();
@@ -34,6 +37,8 @@ public class nodeProperty : MonoBehaviour
             ips.Add(message.ip);
         }   
     }
+
+    // handles sending message to current neighbors
     public void routeMessage(messageContent message)
     {
         nearNeighbour = transform.GetChild(0).GetComponent<CollisionController>().nearNeighbour;

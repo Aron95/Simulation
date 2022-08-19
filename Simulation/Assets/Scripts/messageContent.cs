@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// contans all relevant message information
 public class messageContent : MonoBehaviour
 {
 /**
@@ -30,14 +31,7 @@ public class messageContent : MonoBehaviour
     public float version;
     public int ip;// Wird in MessageDotMovment gesetzt
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-  
-    }
-
-
+    // fills the message with content
     public void fillMessage(messageContent message,int ip)
     {
         this.riskLvl = message.riskLvl;
@@ -50,7 +44,6 @@ public class messageContent : MonoBehaviour
         this.version = message.version;
         this.ip = ip;
     }
-
 
     public void handleData(Collider2D target)
     {
