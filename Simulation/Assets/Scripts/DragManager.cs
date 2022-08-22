@@ -10,9 +10,13 @@ public class DragManager : MonoBehaviour
     public GameObject selectedObject;
     public GameObject halo;
     Vector3 offset;
+
+
+    //UI
     public Canvas canvasNode;
+    public Canvas messageOverview;
     public TextMeshProUGUI textIp;
-    
+    public GameObject messagePrefab;
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +30,7 @@ public class DragManager : MonoBehaviour
              {
                 selectedObject = targetObject.transform.gameObject;
                 loadNodeUi(selectedObject);
-                canvasNode.enabled = true;
+                messageOverview.enabled = true;
                 if(spriteRenderer != null)
                 {
                     spriteRenderer.enabled = false;
@@ -54,7 +58,7 @@ public class DragManager : MonoBehaviour
             halo = null;
             spriteRenderer = null;
             selectedObject = null;
-            canvasNode.enabled = false;
+            messageOverview.enabled = false;
         }
     }
 
@@ -63,7 +67,18 @@ public class DragManager : MonoBehaviour
     // UI to show Node information
     public void loadNodeUi(GameObject selectedGameObject)
     {
-        int ip = selectedGameObject.GetComponent<nodeProperty>().ip;
-        textIp.text = ip.ToString();
+        nodeProperty nodeInformation = selectedGameObject.GetComponent<nodeProperty>();
+        loadMessagesInUi(nodeInformation);
+   
+    }
+
+    public void loadMessagesInUi(nodeProperty nodeInformation)
+    {
+
+    }
+
+    public void deloadMessagesInUi()
+    {
+
     }
 }
