@@ -38,16 +38,9 @@ public class CollisionController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerExit");
         if (collision.gameObject.tag == "NetworkSphere")
         {
-            Debug.Log("Remove" + collision.gameObject.name);
             nearNeighbour.Remove(collision.gameObject);
-        }
-
-        if (collision.gameObject.tag == "Message")
-        {
-            Debug.Log("Got Message");
         }
     }
 

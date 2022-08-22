@@ -34,7 +34,6 @@ public class MessageDotMovment : MonoBehaviour
     void destroyObject()
     {
         GetComponent<messageContent>().handleData(target);
-        Debug.Log("Destory");
         check = false;
         Destroy(gameObject);
     }
