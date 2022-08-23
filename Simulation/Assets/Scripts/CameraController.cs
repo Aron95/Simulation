@@ -27,6 +27,13 @@ public class CameraController : MonoBehaviour
             }
 
             Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
-        }
+
+            float xAxisValue = Input.GetAxis("Horizontal");
+            float yAxisValue = Input.GetAxis("Vertical");
+            if (Camera.current != null)
+            {
+            Camera.current.transform.Translate(new Vector3(xAxisValue, yAxisValue,0.0f));
+            }
+    }
     
 }

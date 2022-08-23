@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // handles dragging nodes in game view and highlighting selected node
 public class DragManager : MonoBehaviour
@@ -17,6 +18,11 @@ public class DragManager : MonoBehaviour
     public Canvas messageOverview;
     public TextMeshProUGUI textIp;
     public GameObject messagePrefab;
+
+    //DATA
+    public Dictionary<messageContent, SortedSet<int>> messageTable =
+    new Dictionary<messageContent, SortedSet<int>>(new MessageCompare());
+
     // Update is called once per frame
     void Update()
     {
@@ -75,6 +81,19 @@ public class DragManager : MonoBehaviour
     public void loadMessagesInUi(nodeProperty nodeInformation)
     {
 
+
+        messageTable = nodeInformation.messageTable;
+        foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)
+        {
+            GameObject prefab = Instantiate(messagePrefab, messageOverview.transform);
+            Text[] content = prefab.GetComponentsInChildren<Text>();
+
+            content[0].text = kvp.Key.content.ToString();
+            content[1].text = kvp.Key.riskLvl.ToString();
+        }
+
+
+        
     }
 
     public void deloadMessagesInUi()
