@@ -65,6 +65,7 @@ public class DragManager : MonoBehaviour
             spriteRenderer = null;
             selectedObject = null;
             messageOverview.enabled = false;
+            deloadMessagesInUi();
         }
     }
 
@@ -81,23 +82,24 @@ public class DragManager : MonoBehaviour
     public void loadMessagesInUi(nodeProperty nodeInformation)
     {
 
-
         messageTable = nodeInformation.messageTable;
-        foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)
+        foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)//TODO: Offset einbauen, damit alles untereinadner erscheint.
         {
             GameObject prefab = Instantiate(messagePrefab, messageOverview.transform);
             Text[] content = prefab.GetComponentsInChildren<Text>();
 
             content[0].text = kvp.Key.content.ToString();
             content[1].text = kvp.Key.riskLvl.ToString();
-        }
-
-
-        
+        }    
     }
 
     public void deloadMessagesInUi()
     {
+        GameObject[] panels = GameObject.FindGameObjectsWithTag("MessagePanel");
 
+        foreach(GameObject panel in panels)
+        {
+            Destroy(panel);
+        }
     }
 }
