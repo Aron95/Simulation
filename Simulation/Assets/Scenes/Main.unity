@@ -1294,11 +1294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6146257c7642e647913290fba461603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomSpeed: 1
+  zoomSpeed: 5
   targetOrtho: 0
-  smoothSpeed: 2
+  smoothSpeed: 10
   minOrtho: 1
-  maxOrtho: 20
+  maxOrtho: 100
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
