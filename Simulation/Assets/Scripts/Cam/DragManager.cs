@@ -60,9 +60,9 @@ public class DragManager : MonoBehaviour
 
 
 
-    public void loadNodeUi(GameObject selectedGameObject)
-    {
-        int ip = selectedGameObject.GetComponent<nodeProperty>().ip;
+    public void loadNodeUi(GameObject selectedGameObject) {
+        nodeProperty np = selectedGameObject.GetComponent<nodeProperty>();
+        int ip = np.ip;
         textIp.text = ip.ToString();
     }
 }
