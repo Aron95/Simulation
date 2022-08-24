@@ -7,6 +7,12 @@ public class CollisionController : MonoBehaviour
 {
     public List<GameObject> nearNeighbour = new List<GameObject>();
     public Dictionary<messageContent, SortedSet<int>> messageTable;
+    public string tag;
+
+     // Start is called before the first frame update
+    void Start() {
+        tag = transform.root.gameObject.tag;
+    }
 
     // triggers when Node collides with other Node
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,16 +38,9 @@ public class CollisionController : MonoBehaviour
     // triggers when Node no longer collides with other Node
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerExit");
         if (collision.gameObject.tag == "NetworkSphere")
         {
-            Debug.Log("Remove" + collision.gameObject.name);
             nearNeighbour.Remove(collision.gameObject);
-        }
-
-        if (collision.gameObject.tag == "Message")
-        {
-            Debug.Log("Got Message");
         }
     }
 

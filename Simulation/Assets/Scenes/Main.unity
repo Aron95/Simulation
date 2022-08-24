@@ -1160,7 +1160,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
@@ -1256,19 +1255,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b021126264c501d4fa781c261303e28e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ip: 0
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,6 +1499,10 @@ PrefabInstance:
     - target: {fileID: 2993711998646315246, guid: d3f5d3f1d80085e85a152a0056df5aa5, type: 3}
       propertyPath: m_Name
       value: Spam Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993711998646315246, guid: d3f5d3f1d80085e85a152a0056df5aa5, type: 3}
+      propertyPath: m_TagString
+      value: NetworkSphere
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3f5d3f1d80085e85a152a0056df5aa5, type: 3}
@@ -3976,68 +3966,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5afb79ad5a0af8f4d8532dab344e13f3, type: 3}
---- !u!1001 &3465191810423517879
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1410286011, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: danger
-      value: 
-      objectReference: {fileID: 963825716}
-    - target: {fileID: 1410286011, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1182834346}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491233, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2153809278885491235, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}
-      propertyPath: m_Name
-      value: Moving Node
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 308595f240534e6bf8a40bdc4f0d5124, type: 3}

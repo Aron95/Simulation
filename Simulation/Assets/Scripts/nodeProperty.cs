@@ -28,10 +28,10 @@ public class nodeProperty : MonoBehaviour
 
     private System.Timers.Timer aTimer;
 
-    // gets a random IP from the main camera when Node is created / game is started
+    // gets a random IP when Node is created / game is started
     void Start()
     {
-        ip = Camera.main.GetComponent<ipProvider>().getRnd();
+        ip = Randomator.Next();
         SetTimer();
     }
 
@@ -119,7 +119,6 @@ public class nodeProperty : MonoBehaviour
                     energy -=1;
                 }
             }
-            Debug.Log("routeMessage" + nearNeighbour);
         }
     }
   

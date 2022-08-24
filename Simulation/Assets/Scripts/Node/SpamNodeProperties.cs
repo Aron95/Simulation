@@ -11,7 +11,7 @@ public class SpamNodeProperties : MonoBehaviour {
     private nodeProperty _np;
     nodeProperty np { get{ return _np ? _np : (_np = GetComponent<nodeProperty>()); } }
 
-    bool started = false;
+    public bool started = false;
     public int delay = 2000;
 
     // Start is called before the first frame update

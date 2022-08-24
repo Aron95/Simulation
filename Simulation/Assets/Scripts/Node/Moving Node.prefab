@@ -27,17 +27,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Node
       objectReference: {fileID: 0}
+    - target: {fileID: 3311565983596797738, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.05900677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3311565983596797738, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.05900677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3311565983596797738, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3207547
+      objectReference: {fileID: 0}
     - target: {fileID: 3311565983596797739, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3311565983596797739, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3311565983596797739, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3311565983596797739, guid: aa6658f18e402604eb30350c62beaad8, type: 3}
       propertyPath: m_LocalPosition.z

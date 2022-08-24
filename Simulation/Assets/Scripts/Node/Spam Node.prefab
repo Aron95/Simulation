@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7032739762265301015}
   m_Layer: 0
   m_Name: Spam Node
-  m_TagString: NetworkSphere
+  m_TagString: Cellular+Wifi+Bluetooth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2993711998646315246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.297, y: -3.317, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2993711999750686704}
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.11320752, g: 0.020825913, b: 0.03516041, a: 1}
+  m_Color: {r: 0.44326112, g: 0.0020914965, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -234,8 +234,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89feacd1746367e428cbf17932caadba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 736906429
+  ip: 0
   nearNeighbour: []
+  energy: 100
+  spamProtectionTimer: 10000
+  spamLimit: 5
+  blockedIps: 
 --- !u!114 &7032739762265301015
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 3601627064897221346}
   m_Layer: 0
   m_Name: Funkturm_klein
-  m_TagString: SendOnlySphere
+  m_TagString: CellularSendOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5793548957877988005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.2293105, y: -1.9431051, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4078264188724274431}
@@ -385,6 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343a300508c9a45438be81fc35c249b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  message: {fileID: 0}
+  nearNeighbour: []
 --- !u!114 &6520260886350758797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +401,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ip: 995686378
   nearNeighbour: []
+  energy: 100
+  spamProtectionTimer: 10000
+  spamLimit: 5
+  blockedIps: 
 --- !u!114 &6177426377345358518
 MonoBehaviour:
   m_ObjectHideFlags: 0
