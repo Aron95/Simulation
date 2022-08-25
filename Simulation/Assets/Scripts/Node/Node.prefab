@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearNeighbour: []
+  tag: 
 --- !u!50 &1206876271
 Rigidbody2D:
   serializedVersion: 4
@@ -245,6 +246,7 @@ GameObject:
   - component: {fileID: 560716776}
   - component: {fileID: 3668727008329905649}
   - component: {fileID: 9082925710707130943}
+  - component: {fileID: 203511881}
   m_Layer: 0
   m_Name: Node
   m_TagString: NetworkSphere
@@ -388,3 +390,18 @@ MonoBehaviour:
   spamProtectionTimer: 10000
   spamLimit: 5
   blockedIps: 
+--- !u!114 &203511881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311565983596797737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d47bc4869b8814688bd814bcbb153d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.001
+  target: {fileID: 0}
+  danger: {fileID: 0}

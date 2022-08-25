@@ -24,8 +24,9 @@ public class nodeProperty : MonoBehaviour
      new Dictionary<int, int>();
 
 
-    //timer
+    //NodeMovment
 
+    //timer
     private System.Timers.Timer aTimer;
 
     // gets a random IP when Node is created / game is started
@@ -82,6 +83,7 @@ public class nodeProperty : MonoBehaviour
                 }
             }
 
+            
             SortedSet<int> ips = new SortedSet<int>();
             ips.Add(message.ip);
 
@@ -89,6 +91,7 @@ public class nodeProperty : MonoBehaviour
             {
                 messageTable.Add(message, ips);
                 routeMessage(message);
+                GetComponent<NodeMovement>().danger = message.dangerNode;
             }
             else
             {

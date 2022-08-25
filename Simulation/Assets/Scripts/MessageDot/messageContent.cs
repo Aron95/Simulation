@@ -29,7 +29,8 @@ public class messageContent : MonoBehaviour
     public int typ;
     public int id;
     public float version;
-    public int ip;// Wird in MessageDotMovment gesetzt
+    public int ip;
+    public GameObject dangerNode;
 
     // fills the message with content
     public void fillMessage(messageContent message,int ip)
@@ -43,6 +44,7 @@ public class messageContent : MonoBehaviour
         this.id = message.id;
         this.version = message.version;
         this.ip = ip;
+        this.dangerNode = message.dangerNode;
     }
 
     public void handleData(Collider2D target)

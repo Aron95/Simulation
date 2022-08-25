@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3933658164130218550}
   - component: {fileID: 8823622918653654520}
   - component: {fileID: 7032739762265301015}
+  - component: {fileID: 1303172822518541417}
   m_Layer: 0
   m_Name: Spam Node
   m_TagString: Cellular+Wifi+Bluetooth
@@ -252,7 +253,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56e9a1a3e2927813a0783c40ff8779d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  started: 0
   delay: 2000
+--- !u!114 &1303172822518541417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2993711998646315246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d47bc4869b8814688bd814bcbb153d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.001
+  target: {fileID: 0}
+  danger: {fileID: 0}
 --- !u!1 &2993711999750686705
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearNeighbour: []
+  tag: 
 --- !u!50 &323914496647221160
 Rigidbody2D:
   serializedVersion: 4
