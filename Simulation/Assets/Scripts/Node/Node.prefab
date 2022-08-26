@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6cf3d4f223865be4d82e18f2750afe4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 3668727008329905649}
   - component: {fileID: 9082925710707130943}
   - component: {fileID: 203511881}
+  - component: {fileID: 359618699}
   m_Layer: 0
   m_Name: Node
   m_TagString: NetworkSphere
@@ -263,7 +264,7 @@ Transform:
   m_GameObject: {fileID: 3311565983596797737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 3311565982301450295}
   - {fileID: 909670903}
@@ -309,7 +310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0.11320752, g: 0.020825913, b: 0.03516041, a: 1}
   m_FlipX: 0
@@ -405,3 +406,25 @@ MonoBehaviour:
   speed: 0.001
   target: {fileID: 0}
   danger: {fileID: 0}
+--- !u!114 &359618699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311565983596797737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b339b62c5f8ebb44dbc1c1486d318d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageObject: {fileID: 0}
+  riskLvl: 0
+  content: 
+  region: []
+  validUntil: 
+  validAfter: 
+  typ: 0
+  id: 0
+  version: 0
+  dangerNode: {fileID: 0}

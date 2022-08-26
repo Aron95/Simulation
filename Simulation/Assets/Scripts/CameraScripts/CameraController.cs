@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
             float yAxisValue = Input.GetAxis("Vertical");
             if (Camera.current != null)
             {
-            Camera.current.transform.Translate(new Vector3(xAxisValue, yAxisValue,0.0f));
+            Camera.current.transform.Translate(new Vector3(xAxisValue*0.1f, yAxisValue*0.1f,0.0f));
             }
     }
     
