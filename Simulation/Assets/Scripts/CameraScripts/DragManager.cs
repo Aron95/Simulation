@@ -51,7 +51,7 @@ public class DragManager : MonoBehaviour
             if (selectedObject) // moves selected object and enables node outline/"halo"
             {
                 selectedObject.transform.position = mousePosition + offset;
-                halo = selectedObject.transform.GetChild(1).gameObject;
+                halo = selectedObject.transform.GetChild(3).gameObject;
                 spriteRenderer = halo.GetComponent<SpriteRenderer>();
                 spriteRenderer.enabled = true;
             }
