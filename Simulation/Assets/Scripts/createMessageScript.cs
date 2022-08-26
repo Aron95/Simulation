@@ -30,8 +30,13 @@ public class createMessageScript : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-           createMessage(riskLvl, content, region, validUntil, validAfter, typ, id, version,  dangerNode);
-           GetComponent<nodeProperty>().addData(messageObject);
+           if(GetComponent<NodeMovement>().danger !=null)
+           {
+                dangerNode = GetComponent<NodeMovement>().danger;
+                createMessage(riskLvl, content, region, validUntil, validAfter, typ, id, version, dangerNode);
+                GetComponent<nodeProperty>().addData(messageObject);
+           }
+         
         }
     }
 

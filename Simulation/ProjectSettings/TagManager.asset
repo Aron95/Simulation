@@ -54,3 +54,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: toplayer
+    uniqueID: 589053881
+    locked: 0
+  - name: downlayer
+    uniqueID: 1603317977
+    locked: 0
+  - name: New Layer
+    uniqueID: 245478355
+    locked: 0
