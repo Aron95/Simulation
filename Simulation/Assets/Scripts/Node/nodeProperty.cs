@@ -7,13 +7,19 @@ using System;
 public class nodeProperty : MonoBehaviour
 {
     public int ip;
-    public List<GameObject> nearNeighbour;
     public int energy = 100;
-    public int spamProtectionTimer = 10000;
+  
+    public CollisionController cellular;
+    public CollisionController wifi;
+    public CollisionController bluetooth;
 
+    public bool canGetCellular;
+    public bool canGetWifi;
+    public bool canGetBluetooth;
 
     //for spamfiltering
     public int spamLimit = 5;
+    public int spamProtectionTimer = 10000;
     public List<int> blockedIps = new List<int>();
 
     // keeps track of which nodes alreay have message
@@ -21,7 +27,12 @@ public class nodeProperty : MonoBehaviour
         new Dictionary<messageContent, SortedSet<int>>(new MessageCompare());
 
     public Dictionary<int, int> spamDetectionTable =
-     new Dictionary<int, int>();
+        new Dictionary<int, int>();
+
+    
+    private MessageShooter _shooter;
+    MessageShooter shooter { get {return _shooter != null ? _shooter : (_shooter = GetComponent<MessageShooter>());}}
+
 
 
     //NodeMovment
@@ -105,20 +116,31 @@ public class nodeProperty : MonoBehaviour
     // handles sending message to current neighbors
     public void routeMessage(messageContent message)
     {
-        nearNeighbour = transform.GetChild(0).GetComponent<CollisionController>().nearNeighbour;
+        if (cellular != null){
+            routeMessageToList(message, cellular.getNeighbours());
+        }
+        if (bluetooth != null){
+            routeMessageToList(message, bluetooth.getNeighbours());
+        }
+        if (wifi != null){
+            routeMessageToList(message, wifi.getNeighbours());
+        }
+        
+    }
 
+    private void routeMessageToList(messageContent message, List<GameObject> neighbours){
         SortedSet<int> ips;
         messageTable.TryGetValue(message,out ips);
 
         if(energy >= 0)
         {
-            foreach (GameObject neighbour in nearNeighbour)
+            foreach (GameObject neighbour in neighbours)
             {
                 if (!(ips.Contains(neighbour.GetComponent<nodeProperty>().ip)))
                 {
                     ips.Add(neighbour.GetComponent<nodeProperty>().ip);
 
-                    GetComponent<MessageShooter>().shootMessageDot(neighbour.GetComponent<Collider2D>(), message);
+                    shooter.shootMessageDot(neighbour.GetComponent<Collider2D>(), message);
                     energy -=1;
                 }
             }

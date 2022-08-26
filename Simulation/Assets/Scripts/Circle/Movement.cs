@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movment : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public GameObject circle;
   
