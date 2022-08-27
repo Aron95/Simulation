@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeMovement : MonoBehaviour
+public class NodeMovementMultipleDangers : MonoBehaviour
 {
 
     public float speed = 0.001f;
     public GameObject target;
-    public GameObject danger;
+    public List<GameObject> danger;
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null) return; // movement requires initial target to move towards
-
-        if (danger != null)
+		if (target == null) return; // movement requires initial target to move towards
+		
+		if (danger != null && danger.Count != 0)
 		{
             dangerRoutine();
 		}
@@ -24,6 +24,8 @@ public class NodeMovement : MonoBehaviour
 		}
     }
 
+
+    // when no danger is set, Node wanders around randomly
     private void wander()
 	{
 
@@ -42,12 +44,29 @@ public class NodeMovement : MonoBehaviour
 		}
 	}
 
+    // Node moves away from known dangers
     private void dangerRoutine()
 	{
-        Vector3 safetyDir = Vector3.Normalize(gameObject.transform.position - danger.transform.position);
+        // calculate safety vector from multiple dangers
+        Vector3 safetyDir = new Vector3();
+
+        foreach (GameObject dangerNode in danger)
+		{
+			if (dangerNode == null)
+			{
+                Debug.Log("DangerNode in List of Dangers is null");
+                return;
+			}
+
+            safetyDir += Vector3.Normalize(gameObject.transform.position - dangerNode.transform.position);
+		}
+
+        safetyDir /= danger.Count;
+        safetyDir = Vector3.Normalize(safetyDir);
+        
         Debug.DrawRay(gameObject.transform.position, safetyDir, Color.blue);
 
-        
+        // actual movement
         if (target.transform.position == gameObject.transform.position) // if new target has to be found
         {
             List<GameObject> targetNeighbors = target.GetComponent<WaypointNeighbors>().neighbors;
@@ -78,5 +97,19 @@ public class NodeMovement : MonoBehaviour
         }
 
     }
+
+    // to be used when single danger nodes need to be added
+    public void addDangerNode(GameObject dangerNode)
+	{
+		if (danger == null)
+		{
+            danger = new List<GameObject>();
+		}
+
+		if (!danger.Contains(dangerNode))
+		{
+            danger.Add(dangerNode);
+		}
+	}
 
 }
