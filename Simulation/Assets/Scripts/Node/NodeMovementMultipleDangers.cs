@@ -59,10 +59,11 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 			}
 
             safetyDir += Vector3.Normalize(gameObject.transform.position - dangerNode.transform.position);
+            safetyDir = Vector3.Normalize(safetyDir);
 		}
 
-        safetyDir /= danger.Count;
-        safetyDir = Vector3.Normalize(safetyDir);
+        //safetyDir /= danger.Count;
+        //safetyDir = Vector3.Normalize(safetyDir);
         
         Debug.DrawRay(gameObject.transform.position, safetyDir, Color.blue);
 
