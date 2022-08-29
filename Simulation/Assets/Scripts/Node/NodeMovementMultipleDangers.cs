@@ -91,7 +91,7 @@ public class NodeMovementMultipleDangers : MonoBehaviour
                 }
             }
 
-			if (lastTarget != newTarget)
+			if (lastTarget != newTarget || lowestAngle < 90)
 			{
                 lastTarget = target;
                 target = newTarget;
@@ -99,13 +99,14 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 			else
 			{
                 shouldMove = false;
+                lastTarget = null;
 			}
         }
         else // move towards target
         {
             Vector3 dirToTarget = target.transform.position - gameObject.transform.position;
             Debug.DrawRay(gameObject.transform.position, dirToTarget, Color.black);
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, speed);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, speed * 1.5f);
 
         }
 
@@ -114,10 +115,9 @@ public class NodeMovementMultipleDangers : MonoBehaviour
     // to be used when single danger nodes need to be added
     public void addDangerNode(GameObject dangerNode)
 	{
-		if (!danger.Contains(dangerNode))
+		if (dangerNode != null && !danger.Contains(dangerNode))
 		{
             danger.Add(dangerNode);
-            shouldMove = true;
 		}
 	}
 
@@ -126,7 +126,9 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 	{
         if (dangers == null) return;
 
-		foreach (GameObject dangerNode in dangers)
+        shouldMove = true;
+
+        foreach (GameObject dangerNode in dangers)
 		{
             addDangerNode(dangerNode);
 		}
