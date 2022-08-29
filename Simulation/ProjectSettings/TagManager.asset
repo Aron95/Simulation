@@ -8,15 +8,9 @@ TagManager:
   - Message
   - Node
   - MessagePanel
-  - SendOnlySphere
-  - CellularSendOnly
   - Cellular
   - Bluetooth
   - Wifi
-  - Wifi+Bluetooth
-  - Cellular+Wifi
-  - Cellular+Bluetooth
-  - Cellular+Wifi+Bluetooth
   layers:
   - Default
   - TransparentFX

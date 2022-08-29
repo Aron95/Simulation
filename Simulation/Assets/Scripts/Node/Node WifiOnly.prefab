@@ -39,6 +39,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node WifiOnly
       objectReference: {fileID: 0}
+    - target: {fileID: 9199875832137607714, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9199875832137607714, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9199875832137607714, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9199875832137607714, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9199875832137607715, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
       propertyPath: m_RootOrder
       value: 0
