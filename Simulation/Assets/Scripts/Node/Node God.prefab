@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: []
+  messageDotType: {fileID: 7252016810732145918, guid: 20b4883ba18b59d20837e7188f95a4e2, type: 3}
+  energyUsage: 0.8
 --- !u!50 &5198862916611810447
 Rigidbody2D:
   serializedVersion: 4
@@ -261,6 +263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: []
+  messageDotType: {fileID: 8672879523835114061, guid: 39981ff7f5e467206b7a26e10c746d77, type: 3}
+  energyUsage: 1
 --- !u!50 &2877996428711334214
 Rigidbody2D:
   serializedVersion: 4
@@ -417,8 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209d19006f95f594cabf2016536faf46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dot: {fileID: 0}
-  messageDot: {fileID: 3709550456525404855, guid: 786c3162d995c3445a0f5e7e97d8428f, type: 3}
 --- !u!50 &1520348904789597400
 Rigidbody2D:
   serializedVersion: 4
@@ -455,11 +457,11 @@ MonoBehaviour:
   ip: 0
   energy: 100
   cellular: {fileID: 5514318017620107230}
-  wifi: {fileID: 8694491665387270266}
   bluetooth: {fileID: 6405429452951777664}
+  wifi: {fileID: 8694491665387270266}
   canGetCellular: 1
-  canGetWifi: 1
   canGetBluetooth: 1
+  canGetWifi: 1
   spamLimit: 5
   spamProtectionTimer: 10000
   blockedIps: 
@@ -672,6 +674,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: []
+  messageDotType: {fileID: 3343214926016035095, guid: 52d7d975b8d678732b5ff31c0dca6695, type: 3}
+  energyUsage: 0
 --- !u!50 &637154778343681724
 Rigidbody2D:
   serializedVersion: 4

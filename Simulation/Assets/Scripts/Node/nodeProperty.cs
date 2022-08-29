@@ -7,15 +7,15 @@ using System;
 public class nodeProperty : MonoBehaviour
 {
     public int ip;
-    public int energy = 100;
-  
-    public CollisionController cellular;
-    public CollisionController wifi;
-    public CollisionController bluetooth;
+    public double energy = 100;
+      
+    public RangeProperties cellular;
+    public RangeProperties bluetooth;
+    public RangeProperties wifi;
 
     public bool canGetCellular;
-    public bool canGetWifi;
     public bool canGetBluetooth;
+    public bool canGetWifi;
 
     //for spamfiltering
     public int spamLimit = 5;
@@ -30,12 +30,8 @@ public class nodeProperty : MonoBehaviour
         new Dictionary<int, int>();
 
     
-    private MessageShooter _shooter;
-    MessageShooter shooter { get {return _shooter != null ? _shooter : (_shooter = GetComponent<MessageShooter>());}}
-
-
-
-    //NodeMovment
+    private MessageSender _sender;
+    MessageSender sender { get {return _sender != null ? _sender : (_sender = GetComponent<MessageSender>());}}
 
     //timer
     private System.Timers.Timer aTimer;
@@ -50,12 +46,12 @@ public class nodeProperty : MonoBehaviour
     private void SetTimer()
     {
         aTimer = new System.Timers.Timer(spamProtectionTimer);
-        aTimer.Elapsed += OnTimedEvent;
+        aTimer.Elapsed += clearSpamDetection;
         aTimer.AutoReset = true;
         aTimer.Enabled = true;
     }
 
-    private void OnTimedEvent(object sender, ElapsedEventArgs e)
+    private void clearSpamDetection(object sender, ElapsedEventArgs e)
     {
         spamDetectionTable.Clear();
     }
@@ -64,7 +60,6 @@ public class nodeProperty : MonoBehaviour
     {
        
     }
-
 
     // handles storing incoming message
     public void addData(messageContent message)
@@ -96,58 +91,21 @@ public class nodeProperty : MonoBehaviour
 
             
             SortedSet<int> ips = new SortedSet<int>();
-            ips.Add(message.ip);
-
+            
             if (!(messageTable.ContainsKey(message)))
             {
                 messageTable.Add(message, ips);
-                routeMessage(message);
+                sender.routeMessage(message);
                 GetComponent<NodeMovement>().danger = message.dangerNode;
             }
             else
             {
                 messageTable.TryGetValue(message, out ips);
-                ips.Add(message.ip);
             }
+            ips.Add(message.ip);
         }
         
     }
-
-    // handles sending message to current neighbors
-    public void routeMessage(messageContent message)
-    {
-        if (cellular != null){
-            routeMessageToList(message, cellular.getNeighbours());
-        }
-        if (bluetooth != null){
-            routeMessageToList(message, bluetooth.getNeighbours());
-        }
-        if (wifi != null){
-            routeMessageToList(message, wifi.getNeighbours());
-        }
-        
-    }
-
-    private void routeMessageToList(messageContent message, List<GameObject> neighbours){
-        SortedSet<int> ips;
-        messageTable.TryGetValue(message,out ips);
-
-        if(energy >= 0)
-        {
-            foreach (GameObject neighbour in neighbours)
-            {
-                if (!(ips.Contains(neighbour.GetComponent<nodeProperty>().ip)))
-                {
-                    ips.Add(neighbour.GetComponent<nodeProperty>().ip);
-
-                    shooter.shootMessageDot(neighbour.GetComponent<Collider2D>(), message);
-                    energy -=1;
-                }
-            }
-        }
-    }
-  
-
 
     public void printDict()
     {

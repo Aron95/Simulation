@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5866395973430391175}
   - component: {fileID: -319067728041215820}
   m_Layer: 2
-  m_Name: MessageDot
+  m_Name: MessageDot Allg
   m_TagString: Message
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,3 +140,4 @@ MonoBehaviour:
   id: 0
   version: 0
   ip: 0
+  dangerNode: {fileID: 0}

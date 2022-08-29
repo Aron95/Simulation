@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // handles node collision with other nodes
-public abstract class CollisionController : MonoBehaviour
+public abstract class RangeProperties : MonoBehaviour
 {
     public List<GameObject> neighbours = new List<GameObject>();
 
     private Dictionary<messageContent, SortedSet<int>> _messageTable;
     Dictionary<messageContent, SortedSet<int>> messageTable { get {return _messageTable != null ? _messageTable : (_messageTable = GetComponentInParent<nodeProperty>().messageTable);}}
     
-    private MessageShooter _shooter;
-    MessageShooter shooter { get {return _shooter != null ? _shooter : (_shooter = GetComponentInParent<MessageShooter>());}}
+    private MessageSender _sender;
+    MessageSender sender { get {return _sender != null ? _sender : (_sender = GetComponent<MessageSender>());}}
 
     
 
@@ -25,17 +25,8 @@ public abstract class CollisionController : MonoBehaviour
             nodeProperty otherNp = other.GetComponent<nodeProperty>();
             if(isValidNode(otherNp)){
                 neighbours.Add(other);
-                foreach (KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)
-                {
-                    if (!(kvp.Value.Contains(otherNp.ip)))
-                    {
-                        shooter.shootMessageDot(collision.GetComponent<Collider2D>(), kvp.Key);
-                    }
-                }
+                sender.sendUnsendMessagesToNode(other, this);
             }
-            
-            
-
         }
     }
 
@@ -55,5 +46,9 @@ public abstract class CollisionController : MonoBehaviour
     }
 
     public abstract bool isValidNode(nodeProperty otherNp);
+
+    public abstract GameObject getMessageDotType();
+
+    public abstract double getEnergyUsage();
 
 }
