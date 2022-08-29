@@ -7,14 +7,18 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 
     public float speed = 0.001f;
     public GameObject target;
-    public List<GameObject> danger;
+    public List<GameObject> danger = new List<GameObject>();
+    public bool shouldMove = true;
+
+    private GameObject lastTarget;
+
 
     // Update is called once per frame
     void Update()
     {
-		if (target == null) return; // movement requires initial target to move towards
+        if (target == null || !shouldMove) return; // movement requires initial target to move towards
 		
-		if (danger != null && danger.Count != 0)
+		if (danger.Count != 0)
 		{
             dangerRoutine();
 		}
@@ -87,7 +91,15 @@ public class NodeMovementMultipleDangers : MonoBehaviour
                 }
             }
 
-            target = newTarget;
+			if (lastTarget != newTarget)
+			{
+                lastTarget = target;
+                target = newTarget;
+			}
+			else
+			{
+                shouldMove = false;
+			}
         }
         else // move towards target
         {
@@ -102,15 +114,22 @@ public class NodeMovementMultipleDangers : MonoBehaviour
     // to be used when single danger nodes need to be added
     public void addDangerNode(GameObject dangerNode)
 	{
-		if (danger == null)
-		{
-            danger = new List<GameObject>();
-		}
-
 		if (!danger.Contains(dangerNode))
 		{
             danger.Add(dangerNode);
+            shouldMove = true;
 		}
 	}
+
+    // adds a list of dangers to the knows list of dangers
+    public void addDangerNodeList(List<GameObject> dangers)
+	{
+        if (dangers == null) return;
+
+		foreach (GameObject dangerNode in dangers)
+		{
+            addDangerNode(dangerNode);
+		}
+    }
 
 }

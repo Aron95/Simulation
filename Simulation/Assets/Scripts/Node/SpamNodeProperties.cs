@@ -25,7 +25,9 @@ public class SpamNodeProperties : MonoBehaviour {
             Debug.Log("P pressed, spamstatus changed");
             started = !started;
             if(started) {
-                new Thread(new ThreadStart(spam)).Start();
+                Thread t = new Thread(new ThreadStart(spam));
+                t.IsBackground = true;
+                t.Start();
             }
         }
     }
@@ -46,7 +48,7 @@ public class SpamNodeProperties : MonoBehaviour {
     }
 
     void spam() {
-        while(started) {
+        while(started && Dispatcher.instanceExists()) {
             Dispatcher.InvokeAsync(createMessage);
             Thread.Sleep(delay);
         }

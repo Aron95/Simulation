@@ -109,5 +109,10 @@ namespace UnityToolbag
                 }
             }
         }
+
+        public static bool instanceExists()
+		{
+            return _instanceExists;
+		}
     }
 }

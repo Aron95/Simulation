@@ -11,7 +11,7 @@ public abstract class RangeProperties : MonoBehaviour
     Dictionary<messageContent, SortedSet<int>> messageTable { get {return _messageTable != null ? _messageTable : (_messageTable = GetComponentInParent<nodeProperty>().messageTable);}}
     
     private MessageSender _sender;
-    MessageSender sender { get {return _sender != null ? _sender : (_sender = GetComponent<MessageSender>());}}
+    MessageSender sender { get {return _sender != null ? _sender : (_sender = GetComponentInParent<MessageSender>());}}
 
     
 

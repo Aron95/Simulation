@@ -30,7 +30,7 @@ public class messageContent : MonoBehaviour
     public int id;
     public float version;
     public int ip;
-    public GameObject dangerNode;
+    public List<GameObject> dangerNodes;
 
     // fills the message with content
     public void fillMessage(messageContent message,int ip)
@@ -44,7 +44,7 @@ public class messageContent : MonoBehaviour
         this.id = message.id;
         this.version = message.version;
         this.ip = ip;
-        this.dangerNode = message.dangerNode;
+        this.dangerNodes = message.dangerNodes;
     }
 
     public void handleData(Collider2D target)

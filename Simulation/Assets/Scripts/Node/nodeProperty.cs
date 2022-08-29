@@ -96,7 +96,7 @@ public class nodeProperty : MonoBehaviour
             {
                 messageTable.Add(message, ips);
                 sender.routeMessage(message);
-                GetComponent<NodeMovement>().danger = message.dangerNode;
+                GetComponent<NodeMovementMultipleDangers>().addDangerNodeList(message.dangerNodes);
             }
             else
             {

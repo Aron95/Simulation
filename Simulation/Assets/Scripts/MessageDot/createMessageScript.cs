@@ -15,7 +15,7 @@ public class createMessageScript : MonoBehaviour
     public int typ;
     public int id;
     public float version;
-    public GameObject dangerNode;
+    public List<GameObject> dangerNodes;
 
 
 
@@ -30,19 +30,14 @@ public class createMessageScript : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-           if(GetComponent<NodeMovement>().danger !=null)
-           {
-                dangerNode = GetComponent<NodeMovement>().danger;
-                createMessage(riskLvl, content, region, validUntil, validAfter, typ, id, version, dangerNode);
-                GetComponent<nodeProperty>().addData(messageObject);
-           }
-         
+            createMessage(riskLvl, content, region, validUntil, validAfter, typ, id, version, dangerNodes);
+            GetComponent<nodeProperty>().addData(messageObject);
         }
     }
 
     
     public messageContent createMessage(int riskLvl, string content, string[] region, string validUntil, 
-                                        string validAfter, int typ, int id, float version,  GameObject dangerNode  )
+                                        string validAfter, int typ, int id, float version, List<GameObject> dangerNodes)
     {
 
         messageObject.riskLvl = riskLvl;
@@ -54,7 +49,7 @@ public class createMessageScript : MonoBehaviour
         messageObject.id = id;
         messageObject.version = version;
         messageObject.ip = GetComponent<nodeProperty>().ip;
-        messageObject.dangerNode = dangerNode;
+        messageObject.dangerNodes = dangerNodes;
 
         return messageObject;
     }
