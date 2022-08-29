@@ -316,7 +316,6 @@ GameObject:
   - component: {fileID: 2877996427008160449}
   - component: {fileID: 1520348904789597400}
   - component: {fileID: 6484543890475445014}
-  - component: {fileID: 2877996427498271072}
   - component: {fileID: -2984811333687154450}
   m_Layer: 0
   m_Name: Node God
@@ -466,21 +465,6 @@ MonoBehaviour:
   spamLimit: 5
   spamProtectionTimer: 10000
   blockedIps: 
---- !u!114 &2877996427498271072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722186964883486208}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d47bc4869b8814688bd814bcbb153d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.001
-  target: {fileID: 0}
-  danger: {fileID: 0}
 --- !u!114 &-2984811333687154450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,6 +480,7 @@ MonoBehaviour:
   speed: 0.001
   target: {fileID: 0}
   danger: []
+  shouldMove: 1
 --- !u!1 &2877996427399237855
 GameObject:
   m_ObjectHideFlags: 0
