@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  speed: 0.5
 --- !u!50 &-5866395973430391175
 Rigidbody2D:
   serializedVersion: 4
@@ -140,4 +141,4 @@ MonoBehaviour:
   id: 0
   version: 0
   ip: 0
-  dangerNode: {fileID: 0}
+  dangerNodes: []

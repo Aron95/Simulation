@@ -95,14 +95,15 @@ public class nodeProperty : MonoBehaviour
             if (!(messageTable.ContainsKey(message)))
             {
                 messageTable.Add(message, ips);
+                ips.Add(message.ip);
                 sender.routeMessage(message);
                 GetComponent<NodeMovementMultipleDangers>().addDangerNodeList(message.dangerNodes);
             }
             else
             {
                 messageTable.TryGetValue(message, out ips);
+                ips.Add(message.ip);
             }
-            ips.Add(message.ip);
         }
         
     }

@@ -7,13 +7,15 @@ public class MessageDotMovment : MonoBehaviour
 {
     public Collider2D target;
     bool check = false;
+    public float speed = 1.0f;
+
 
     // contains homing mechanism of message objects
     private void Update()
     {
         if (check)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.012f);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.012f * speed);
             
             // if message is close to target center
             if ((target.transform.position -transform.position).magnitude < 0.2f ) 
