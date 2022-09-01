@@ -9,9 +9,10 @@ public class NodeMovementMultipleDangers : MonoBehaviour
     public GameObject target;
     public List<GameObject> danger = new List<GameObject>();
     public bool shouldMove = true;
+    public bool shouldMoveToDanger = false;
 
     private GameObject lastTarget;
-
+    private GameObject dangerToMoveTo;
 
     // Update is called once per frame
     void Update()
@@ -20,7 +21,14 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 		
 		if (danger.Count != 0)
 		{
-            dangerRoutine();
+			if (!shouldMoveToDanger)
+			{
+                dangerRoutine();
+			}
+			else
+			{
+                moveToDanger();
+			}
 		}
         else
 		{
@@ -28,6 +36,27 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 		}
     }
 
+    // to be used when single danger nodes need to be added
+    public void addDangerNode(GameObject dangerNode)
+	{
+		if (dangerNode != null && !danger.Contains(dangerNode))
+		{
+            danger.Add(dangerNode);
+		}
+	}
+
+    // adds a list of dangers to the knows list of dangers
+    public void addDangerNodeList(List<GameObject> dangers)
+	{
+        if (dangers == null) return;
+
+        shouldMove = true;
+
+        foreach (GameObject dangerNode in dangers)
+		{
+            addDangerNode(dangerNode);
+		}
+    }
 
     // when no danger is set, Node wanders around randomly
     private void wander()
@@ -35,7 +64,7 @@ public class NodeMovementMultipleDangers : MonoBehaviour
 
 		if (gameObject.transform.position != target.transform.position) // move towards target
 		{
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, speed);
+            moveToTarget();
 		}
 		else // find new target to move towards
 		{
@@ -74,22 +103,8 @@ public class NodeMovementMultipleDangers : MonoBehaviour
         // actual movement
         if (target.transform.position == gameObject.transform.position) // if new target has to be found
         {
-            List<GameObject> targetNeighbors = target.GetComponent<WaypointNeighbors>().neighbors;
-
-            GameObject newTarget = null;
-            float lowestAngle = 181;
-
-            foreach (GameObject neighbor in targetNeighbors) // finds neighbor that leads furthest away from danger
-            {
-                Vector3 dirToNeighbor = neighbor.transform.position - gameObject.transform.position;
-                float neighborAngle = Vector3.Angle(safetyDir, dirToNeighbor);
-
-                if (neighborAngle < lowestAngle)
-                {
-                    newTarget = neighbor;
-                    lowestAngle = neighborAngle;
-                }
-            }
+            GameObject newTarget;
+            float lowestAngle = chooseNewTarget(safetyDir, out newTarget);
 
 			if (lastTarget != newTarget || lowestAngle < 90)
 			{
@@ -104,34 +119,77 @@ public class NodeMovementMultipleDangers : MonoBehaviour
         }
         else // move towards target
         {
-            Vector3 dirToTarget = target.transform.position - gameObject.transform.position;
-            Debug.DrawRay(gameObject.transform.position, dirToTarget, Color.black);
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, speed * 1.5f);
-
+            moveToTarget();
         }
 
     }
 
-    // to be used when single danger nodes need to be added
-    public void addDangerNode(GameObject dangerNode)
+    // move towards danger
+    private void moveToDanger()
 	{
-		if (dangerNode != null && !danger.Contains(dangerNode))
+		if (dangerToMoveTo == null)
 		{
-            danger.Add(dangerNode);
+            int index = Mathf.RoundToInt(Random.value * (danger.Count-1));
+            dangerToMoveTo = danger[index];
 		}
+        Vector3 dangerPos = dangerToMoveTo.transform.position;
+
+        Vector3 dangerDir = Vector3.Normalize(dangerPos - gameObject.transform.position);
+        Debug.DrawRay(gameObject.transform.position, dangerDir, Color.red);
+
+        // actual movement
+        if (target.transform.position == gameObject.transform.position) // if new target has to be found
+        {
+            GameObject newTarget;
+            chooseNewTarget(dangerDir, out newTarget);
+
+            if (lastTarget != newTarget)
+            {
+                lastTarget = target;
+                target = newTarget;
+            }
+            else
+            {
+                dangerToMoveTo = null;
+                lastTarget = null;
+            }
+        }
+        else // move towards target
+        {
+            moveToTarget();
+        }
+
 	}
 
-    // adds a list of dangers to the knows list of dangers
-    public void addDangerNodeList(List<GameObject> dangers)
+    // chooses new Target to move to depending on the direction given
+    private float chooseNewTarget(Vector3 dir, out GameObject newTarget)
 	{
-        if (dangers == null) return;
+        List<GameObject> targetNeighbors = target.GetComponent<WaypointNeighbors>().neighbors;
+        newTarget = null;
 
-        shouldMove = true;
+        float lowestAngle = 181;
 
-        foreach (GameObject dangerNode in dangers)
-		{
-            addDangerNode(dangerNode);
-		}
+        foreach (GameObject neighbor in targetNeighbors) // finds neighbor that leads furthest away from danger
+        {
+            Vector3 dirToNeighbor = neighbor.transform.position - gameObject.transform.position;
+            float neighborAngle = Vector3.Angle(dir, dirToNeighbor);
+
+            if (neighborAngle < lowestAngle)
+            {
+                newTarget = neighbor;
+                lowestAngle = neighborAngle;
+            }
+        }
+
+        return lowestAngle;
+    }
+
+    // moves Node towards target and visualizes
+    private void moveToTarget()
+	{
+        Vector3 dirToTarget = target.transform.position - gameObject.transform.position;
+        Debug.DrawRay(gameObject.transform.position, dirToTarget, Color.black);
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, speed);
     }
 
 }
