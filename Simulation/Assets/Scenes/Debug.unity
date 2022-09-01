@@ -563,6 +563,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2538603589220906191, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1892967015}
+    - target: {fileID: 2538603589220906191, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: danger.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538603589220906191, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: shouldMoveToDanger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538603589220906191, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: danger.Array.data[0]
+      value: 
+      objectReference: {fileID: 1348307817}
+    - target: {fileID: 2538603589220906191, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: danger.Array.data[1]
+      value: 
+      objectReference: {fileID: 380318635}
+    - target: {fileID: 2538603589220906191, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
+      propertyPath: danger.Array.data[2]
+      value: 
+      objectReference: {fileID: 1190710645}
     - target: {fileID: 5933929998505209153, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
       propertyPath: speed
       value: 0.001
@@ -742,29 +766,6 @@ PrefabInstance:
       objectReference: {fileID: 1071006595}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64aa9570518e9e72a8976925a3f49c72, type: 3}
---- !u!1 &1772553240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9199875832137607713, guid: c08fad0437d5b2e09979eba31cf8a2ef, type: 3}
-  m_PrefabInstance: {fileID: 1146013911}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1772553248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772553240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157a545544528b543bf6313f4dabe061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.001
-  target: {fileID: 1892967015}
-  danger:
-  - {fileID: 1348307817}
-  - {fileID: 380318635}
-  - {fileID: 1190710645}
 --- !u!1001 &1798349124
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,6 +23,10 @@ public class DragManager : MonoBehaviour
     public Dictionary<messageContent, SortedSet<int>> messageTable =
     new Dictionary<messageContent, SortedSet<int>>(new MessageCompare());
 
+    private int cachedSize = -1;
+    private nodeProperty cachedProperty = null;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -32,7 +36,7 @@ public class DragManager : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
              Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-             if(targetObject)
+             if(targetObject && selectedObject != targetObject.transform.gameObject)
              {
                 selectedObject = targetObject.transform.gameObject;
                 loadNodeUi(selectedObject);
@@ -59,14 +63,20 @@ public class DragManager : MonoBehaviour
         }
         else if (Input.GetMouseButton(1) && selectedObject) // disables node outline/"halo"
         {
-            Debug.Log("Derefence Halo");
             spriteRenderer.enabled = false;
             halo = null;
             spriteRenderer = null;
             selectedObject = null;
             messageOverview.enabled = false;
+            cachedProperty = null;
+            cachedSize = -1;
             deloadMessagesInUi();
         }
+
+		if (cachedProperty)
+		{
+            loadMessagesInUi(cachedProperty);
+		}
     }
 
 
@@ -74,15 +84,19 @@ public class DragManager : MonoBehaviour
     // UI to show Node information
     public void loadNodeUi(GameObject selectedGameObject)
     {
-        nodeProperty nodeInformation = selectedGameObject.GetComponent<nodeProperty>();
-        loadMessagesInUi(nodeInformation);
+        cachedProperty = selectedGameObject.GetComponent<nodeProperty>();
+        loadMessagesInUi(cachedProperty);
    
     }
 
     public void loadMessagesInUi(nodeProperty nodeInformation)
     {
-
         messageTable = nodeInformation.messageTable;
+
+		if (cachedSize == messageTable.Count) return;
+
+        cachedSize = messageTable.Count;
+
         foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)//TODO: Offset einbauen, damit alles untereinadner erscheint.
         {
             GameObject prefab = Instantiate(messagePrefab, messageOverview.transform);

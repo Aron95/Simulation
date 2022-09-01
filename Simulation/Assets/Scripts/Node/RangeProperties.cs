@@ -6,9 +6,6 @@ using UnityEngine;
 public abstract class RangeProperties : MonoBehaviour
 {
     public List<GameObject> neighbours = new List<GameObject>();
-
-    private Dictionary<messageContent, SortedSet<int>> _messageTable;
-    Dictionary<messageContent, SortedSet<int>> messageTable { get {return _messageTable != null ? _messageTable : (_messageTable = GetComponentInParent<nodeProperty>().messageTable);}}
     
     private MessageSender _sender;
     MessageSender sender { get {return _sender != null ? _sender : (_sender = GetComponentInParent<MessageSender>());}}
@@ -18,7 +15,6 @@ public abstract class RangeProperties : MonoBehaviour
     // triggers when Node collides with other Node
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         GameObject other = collision.gameObject;
         if (other.tag == "NetworkSphere" && other != transform.parent.gameObject)
         {
