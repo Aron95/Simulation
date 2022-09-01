@@ -12,6 +12,7 @@ public class DragManager : MonoBehaviour
     public GameObject halo;
     Vector3 offset;
 
+    public float length = 41.0f;
 
     //UI
     public Canvas canvasNode;
@@ -95,11 +96,20 @@ public class DragManager : MonoBehaviour
 
 		if (cachedSize == messageTable.Count) return;
 
+
         cachedSize = messageTable.Count;
+        deloadMessagesInUi();
+
+        int index = 0;
 
         foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)//TODO: Offset einbauen, damit alles untereinadner erscheint.
-        {
+        {   
             GameObject prefab = Instantiate(messagePrefab, messageOverview.transform);
+
+            prefab.transform.Translate(Vector3.down * length*index);
+            index++;
+
+
             Text[] content = prefab.GetComponentsInChildren<Text>();
 
             content[0].text = kvp.Key.content.ToString();

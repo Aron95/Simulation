@@ -12171,6 +12171,10 @@ PrefabInstance:
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 8609231725467724431, guid: c30b5e8bd42c2f84ebce4ef18104428e, type: 3}
+      propertyPath: length
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8609231725467724431, guid: c30b5e8bd42c2f84ebce4ef18104428e, type: 3}
       propertyPath: textIp
       value: 
       objectReference: {fileID: 113459028}
