@@ -14,6 +14,8 @@ public class NodeMovementMultipleDangers : MonoBehaviour
     private GameObject lastTarget;
     private GameObject dangerToMoveTo;
 
+    private Vector3 safetyDir; // cached safety dir for danger routine
+
     // Update is called once per frame
     void Update()
     {
@@ -80,29 +82,28 @@ public class NodeMovementMultipleDangers : MonoBehaviour
     // Node moves away from known dangers
     private void dangerRoutine()
 	{
-        // calculate safety vector from multiple dangers
-        Vector3 safetyDir = new Vector3();
-
-        foreach (GameObject dangerNode in danger)
-		{
-			if (dangerNode == null)
-			{
-                Debug.Log("DangerNode in List of Dangers is null");
-                return;
-			}
-
-            safetyDir += Vector3.Normalize(gameObject.transform.position - dangerNode.transform.position);
-            safetyDir = Vector3.Normalize(safetyDir);
-		}
-
-        //safetyDir /= danger.Count;
-        //safetyDir = Vector3.Normalize(safetyDir);
-        
-        Debug.DrawRay(gameObject.transform.position, safetyDir, Color.blue);
-
         // actual movement
         if (target.transform.position == gameObject.transform.position) // if new target has to be found
         {
+            // calculate safety vector from multiple dangers
+            safetyDir = new Vector3();
+
+            foreach (GameObject dangerNode in danger)
+		    {
+			    if (dangerNode == null)
+			    {
+                    Debug.Log("DangerNode in List of Dangers is null");
+                    return;
+			    }
+
+                safetyDir += Vector3.Normalize(gameObject.transform.position - dangerNode.transform.position);
+                safetyDir = Vector3.Normalize(safetyDir);
+		    }
+
+            //safetyDir /= danger.Count;
+            //safetyDir = Vector3.Normalize(safetyDir);
+
+            // choose new target based on angle
             GameObject newTarget;
             float lowestAngle = chooseNewTarget(safetyDir, out newTarget);
 
@@ -121,6 +122,7 @@ public class NodeMovementMultipleDangers : MonoBehaviour
         {
             moveToTarget();
         }
+        Debug.DrawRay(gameObject.transform.position, safetyDir, Color.blue);
 
     }
 

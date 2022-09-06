@@ -5,13 +5,16 @@ using UnityEngine;
 public class createNodes : MonoBehaviour
 {
     public int nodeCount = 50;
-    public GameObject Node; // prefab from which to create nodes
+    public List<GameObject> Nodes; // prefab from which to create nodes
     
     public bool grid = true;
+    public float gridDistance = 1.6f;
     public List<GameObject> startingTargets = new List<GameObject>(); // random target from conected targets
     
     void Start()
     {
+        if (Nodes.Count == 0) return;
+
 		if (grid)
 		{
             int amount = Mathf.RoundToInt(Mathf.Sqrt(nodeCount));
@@ -30,10 +33,15 @@ public class createNodes : MonoBehaviour
         Vector2 spawnPoint = new Vector2(0, 0);
         for (int i = 0; i < amount; i++)
         {
-            spawnPoint.x = 2 * i;
+            spawnPoint.x = gridDistance * i;
             for (int j = 0; j < amount; j++)
             {
-                spawnPoint.y = 2 * j;
+                spawnPoint.y = gridDistance * j;
+
+                // choose random prefab
+                int prefabIndex = Mathf.RoundToInt(Random.value * (Nodes.Count - 1));
+                GameObject Node = Nodes[prefabIndex];
+
                 Instantiate(Node, spawnPoint, transform.rotation); // actually creates nodes
             }
         }
@@ -66,11 +74,13 @@ public class createNodes : MonoBehaviour
             // randomize spawnpoint between selected targets
             Vector3 randomSpawnpoint = Vector3.Lerp(current.transform.position, neighbor.transform.position, Random.value);
 
+            // choose random prefab
+            int prefabIndex = Mathf.RoundToInt(Random.value * (Nodes.Count - 1));
+            GameObject Node = Nodes[prefabIndex];
+
             // create Node and give it initial target
             GameObject newNode = Instantiate(Node, randomSpawnpoint, transform.rotation);
             newNode.GetComponent<NodeMovementMultipleDangers>().target = current;
-
-            // ^ TODO: choose random Node prefab at instantiation ^
 		}
 	}
 
