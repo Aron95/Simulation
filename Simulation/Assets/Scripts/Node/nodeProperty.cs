@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
 using System;
+using UnityEngine.UI;
 // contains all information of a node and handles decision-making within node
 public class nodeProperty : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class nodeProperty : MonoBehaviour
     public RangeProperties cellular;
     public RangeProperties bluetooth;
     public RangeProperties wifi;
+
+    public GameObject energyBar;
+    public EnergyScript script;
 
     public bool canGetCellular;
     public bool canGetBluetooth;
@@ -41,6 +45,7 @@ public class nodeProperty : MonoBehaviour
     {
         ip = Randomator.Next();
         SetTimer();
+        script = energyBar.GetComponent<EnergyScript>();
     }
 
     private void SetTimer()
@@ -106,6 +111,16 @@ public class nodeProperty : MonoBehaviour
             }
         }
         
+    }
+
+    public void lowerEnergy(double energyDraw)
+    {
+        Debug.Log(energy);
+        Debug.Log(energyDraw);
+        Debug.Log(energyBar);
+        energy = energyDraw;
+
+        script.SetEnergy(energy);
     }
 
     public void printDict()

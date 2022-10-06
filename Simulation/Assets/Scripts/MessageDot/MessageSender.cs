@@ -50,6 +50,7 @@ public class MessageSender : MonoBehaviour
             Dot.GetComponent<MessageDotMovment>().moveToTarget(destinationNp.GetComponent<Collider2D>());
 
             np.energy -=rp.getEnergyUsage();
+            np.lowerEnergy(np.energy);
             return true;
         }
         return false;

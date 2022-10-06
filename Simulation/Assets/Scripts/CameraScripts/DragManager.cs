@@ -16,6 +16,7 @@ public class DragManager : MonoBehaviour
 
     //UI
     public Canvas canvasNode;
+    public GameObject panel;
     public Canvas messageOverview;
     public TextMeshProUGUI textIp;
     public GameObject messagePrefab;
@@ -34,9 +35,10 @@ public class DragManager : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonUp(0))
         {
-             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+            deloadMessagesInUi();
+            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
              if(targetObject && selectedObject != targetObject.transform.gameObject)
              {
                 selectedObject = targetObject.transform.gameObject;
@@ -72,6 +74,7 @@ public class DragManager : MonoBehaviour
             cachedProperty = null;
             cachedSize = -1;
             deloadMessagesInUi();
+            deloadMessage();
         }
 
 		if (cachedProperty)
@@ -87,8 +90,32 @@ public class DragManager : MonoBehaviour
     {
         cachedProperty = selectedGameObject.GetComponent<nodeProperty>();
         loadMessagesInUi(cachedProperty);
-   
+
+
     }
+
+    public void loadMessage(messageContent message)
+    {
+        canvasNode.enabled = true;
+
+        Text[] content = panel.GetComponentsInChildren<Text>();
+        Debug.Log(content.Length);
+        content[0].text = message.content.ToString();
+        content[1].text = message.id.ToString();
+        content[2].text = message.riskLvl.ToString();
+        content[3].text = message.region.ToString();
+        content[4].text = message.validUntil.ToString();
+        content[5].text = message.validAfter.ToString();
+        content[6].text = message.version.ToString();
+        content[7].text = message.typ.ToString();
+        deloadMessagesInUi();
+    }
+
+    public void deloadMessage()
+    {
+        canvasNode.enabled = false;
+    }
+
 
     public void loadMessagesInUi(nodeProperty nodeInformation)
     {
@@ -105,13 +132,15 @@ public class DragManager : MonoBehaviour
         foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)//TODO: Offset einbauen, damit alles untereinadner erscheint.
         {   
             GameObject prefab = Instantiate(messagePrefab, messageOverview.transform);
+            ButtoScript script = prefab.GetComponentInChildren<ButtoScript>();
 
             prefab.transform.Translate(Vector3.down * length*index);
             index++;
 
 
-            Text[] content = prefab.GetComponentsInChildren<Text>();
 
+            Text[] content = prefab.GetComponentsInChildren<Text>();
+            script.content = kvp.Key;
             content[0].text = kvp.Key.content.ToString();
             content[1].text = kvp.Key.riskLvl.ToString();
         }    
@@ -120,10 +149,12 @@ public class DragManager : MonoBehaviour
     public void deloadMessagesInUi()
     {
         GameObject[] panels = GameObject.FindGameObjectsWithTag("MessagePanel");
-
-        foreach(GameObject panel in panels)
-        {
-            Destroy(panel);
+        if (panels.Length != 0){
+            foreach (GameObject panel in panels)
+            {
+                Destroy(panel);
+            }
         }
+        
     }
 }
