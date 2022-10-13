@@ -115,9 +115,6 @@ public class nodeProperty : MonoBehaviour
 
     public void lowerEnergy(double energyDraw)
     {
-        Debug.Log(energy);
-        Debug.Log(energyDraw);
-        Debug.Log(energyBar);
         energy = energyDraw;
 
         script.SetEnergy(energy);
