@@ -33,29 +33,32 @@ public class DragManager : MonoBehaviour
     void Update()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        
-        if(Input.GetMouseButtonUp(0))
+
+        // if left button is held down
+        if(Input.GetMouseButton(0))
         {
-            deloadMessagesInUi();
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-             if(targetObject && selectedObject != targetObject.transform.gameObject)
+             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+             if(targetObject && selectedObject != targetObject.transform.gameObject) // if target is changed
              {
+                deloadMessagesInUi();
+
+                // change selected object to what the cursor is hovering over
                 selectedObject = targetObject.transform.gameObject;
                 loadNodeUi(selectedObject);
                 messageOverview.enabled = true;
+
+                // deselect Halo of last selected Node
                 if(spriteRenderer != null)
                 {
+                    Debug.Log("Test");
                     spriteRenderer.enabled = false;
-                    
                 }
-
 
                 offset = selectedObject.transform.position -mousePosition;
              }
 
 
-            if (selectedObject) // moves selected object and enables node outline/"halo"
+            if (selectedObject && targetObject && selectedObject == targetObject.transform.gameObject) // moves selected object and enables node outline/"halo"
             {
                 selectedObject.transform.position = mousePosition + offset;
                 halo = selectedObject.transform.GetChild(3).gameObject;
@@ -89,9 +92,8 @@ public class DragManager : MonoBehaviour
     public void loadNodeUi(GameObject selectedGameObject)
     {
         cachedProperty = selectedGameObject.GetComponent<nodeProperty>();
+        cachedSize = -1;
         loadMessagesInUi(cachedProperty);
-
-
     }
 
     public void loadMessage(messageContent message)
@@ -136,8 +138,6 @@ public class DragManager : MonoBehaviour
 
             prefab.transform.Translate(Vector3.down * length*index);
             index++;
-
-
 
             Text[] content = prefab.GetComponentsInChildren<Text>();
             script.content = kvp.Key;
