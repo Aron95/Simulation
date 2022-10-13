@@ -13,12 +13,8 @@ public class ButtoScript : MonoBehaviour
         dragManager = Camera.main.GetComponent<DragManager>();
     }
 
-
-
     void OnClick()
     {
-        Debug.Log("clicked"+content.content);
-        dragManager.loadMessage(content);
-        
+        dragManager.loadMessage(content);   
     }
 }

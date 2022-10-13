@@ -37,71 +37,81 @@ public class DragManager : MonoBehaviour
         // if left button is held down
         if(Input.GetMouseButton(0))
         {
-             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-             if(targetObject && selectedObject != targetObject.transform.gameObject) // if target is changed
-             {
-                deloadMessagesInUi();
-
-                // change selected object to what the cursor is hovering over
-                selectedObject = targetObject.transform.gameObject;
-                loadNodeUi(selectedObject);
-                messageOverview.enabled = true;
-
-                // deselect Halo of last selected Node
-                if(spriteRenderer != null)
+            // only continue if cursor is on draggable object
+            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+            if (targetObject)
+			{
+                // changed target
+                if (selectedObject != targetObject.transform.gameObject)
                 {
-                    Debug.Log("Test");
-                    spriteRenderer.enabled = false;
+                    // resets UI state
+                    deselectNode();
+
+                    // change selected object to what the cursor is hovering over
+                    selectedObject = targetObject.transform.gameObject;
+
+                    // sets cache of Node
+                    cachedProperty = selectedObject.GetComponent<nodeProperty>();
+
+                    // loads all messages of Node
+                    loadMessagesInUi(cachedProperty);
+
+                    // enable halo
+                    halo = selectedObject.transform.GetChild(3).gameObject;
+                    spriteRenderer = halo.GetComponent<SpriteRenderer>();
+                    spriteRenderer.enabled = true;
+
+                    // calculate offset between cursor and Node
+                    offset = selectedObject.transform.position - mousePosition;
                 }
 
-                offset = selectedObject.transform.position -mousePosition;
-             }
-
-
-            if (selectedObject && targetObject && selectedObject == targetObject.transform.gameObject) // moves selected object and enables node outline/"halo"
-            {
-                selectedObject.transform.position = mousePosition + offset;
-                halo = selectedObject.transform.GetChild(3).gameObject;
-                spriteRenderer = halo.GetComponent<SpriteRenderer>();
-                spriteRenderer.enabled = true;
-            }
-   
+                // moves selected object
+                if (selectedObject && selectedObject == targetObject.transform.gameObject)
+                {
+                    selectedObject.transform.position = mousePosition + offset;
+                }
+			}
+			
         }
-        else if (Input.GetMouseButton(1) && selectedObject) // disables node outline/"halo"
+        else if (Input.GetMouseButton(1)) // disables node outline/"halo"
         {
-            spriteRenderer.enabled = false;
-            halo = null;
-            spriteRenderer = null;
-            selectedObject = null;
-            messageOverview.enabled = false;
-            cachedProperty = null;
-            cachedSize = -1;
-            deloadMessagesInUi();
-            deloadMessage();
+            deselectNode();
         }
 
+        // updates message for each frame
 		if (cachedProperty)
 		{
             loadMessagesInUi(cachedProperty);
 		}
     }
 
+    // resets UI
+    private void deselectNode()
+	{
+        // deselect Halo of last selected Node
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false;
+            spriteRenderer = null;
+        }
+        halo = null;
 
-
-    // UI to show Node information
-    public void loadNodeUi(GameObject selectedGameObject)
-    {
-        cachedProperty = selectedGameObject.GetComponent<nodeProperty>();
+        // resets selection state
+        selectedObject = null;
+        cachedProperty = null;
         cachedSize = -1;
-        loadMessagesInUi(cachedProperty);
+
+        // hide message panels
+        deloadMessagesInUi();
+        deloadMessage();
     }
 
+    // shows content of one message (called by "ButtoScript.cs")
     public void loadMessage(messageContent message)
     {
         canvasNode.enabled = true;
 
         Text[] content = panel.GetComponentsInChildren<Text>();
-        Debug.Log(content.Length);
         content[0].text = message.content.ToString();
         content[1].text = message.id.ToString();
         content[2].text = message.riskLvl.ToString();
@@ -113,41 +123,54 @@ public class DragManager : MonoBehaviour
         deloadMessagesInUi();
     }
 
+    // hides content of one message
     public void deloadMessage()
     {
         canvasNode.enabled = false;
     }
 
-
+    // actually loads list of messages of one Node
     public void loadMessagesInUi(nodeProperty nodeInformation)
     {
+        // get list of messages
         messageTable = nodeInformation.messageTable;
 
+        // do nothing if size has not changed
 		if (cachedSize == messageTable.Count) return;
 
-
+        // save new size
         cachedSize = messageTable.Count;
+
+        // reset UI to hide old messages/different nodes
         deloadMessagesInUi();
 
+        // display messages
         int index = 0;
-
-        foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)//TODO: Offset einbauen, damit alles untereinadner erscheint.
-        {   
+        foreach(KeyValuePair<messageContent, SortedSet<int>> kvp in messageTable)
+        {
+            // create panel for one message
             GameObject prefab = Instantiate(messagePrefab, messageOverview.transform);
             ButtoScript script = prefab.GetComponentInChildren<ButtoScript>();
 
+            // move panel down to create a list
             prefab.transform.Translate(Vector3.down * length*index);
             index++;
 
+            // fill panel with content of message
             Text[] content = prefab.GetComponentsInChildren<Text>();
             script.content = kvp.Key;
             content[0].text = kvp.Key.content.ToString();
             content[1].text = kvp.Key.riskLvl.ToString();
-        }    
+        }
+
+        // shows container panel for messages
+        messageOverview.enabled = true;
     }
 
+    // hides list of messages of one Node
     public void deloadMessagesInUi()
     {
+        // destroy all message panels
         GameObject[] panels = GameObject.FindGameObjectsWithTag("MessagePanel");
         if (panels.Length != 0){
             foreach (GameObject panel in panels)
@@ -155,6 +178,9 @@ public class DragManager : MonoBehaviour
                 Destroy(panel);
             }
         }
-        
+
+        // hides message container
+        messageOverview.enabled = false;
+
     }
 }
