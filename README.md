@@ -6,6 +6,24 @@ Diese Simulation simuliert unsere Architektur für eine Katastrophenkommunikatio
 
 Realisiert wird dies mit Unity.
 
+## Inhaltsverzeichnis
+- [Unity](#unity)
+  - [Projekt importieren in Unity](#projekt-importieren-in-unity)
+  - [Inhalt und Starten der Simulationen](#inhalt-und-starten-der-simulationen)
+  - [Kurzübersicht Bedienung Unity](#kurzübersicht-bedienung-unity)
+    - [Projektverzeichnis](#projektverzeichnis)
+    - [Hierarchy](#hierarchy)
+    - [Inspector](#inspector)
+    - [Simulation starten](#simulation-starten)
+    - [Bedienung der Kamera](#bedienung-der-kamera)
+- [Projektübersicht](#projektübersicht)
+  - [Szenen](#szenen)
+  - [Nachrichtentypen](#nachrichtentypen)
+  - [Nodetypen](#nodetypen)
+  - [UI / Camera](#ui-/-camera)
+- [Referenzen](#referenzen)
+- [Disclaimer](#disclaimer)
+
 ## Unity
 
 Benötigt wird Version 2020.3.7f1
@@ -13,31 +31,47 @@ Benötigt wird Version 2020.3.7f1
 Am einfachsten Installiert über [Unity Hub](https://unity.com/download) mit Download der Version aus dem [Archiv](https://unity3d.com/get-unity/download/archive) <br>
 Getestet wurde es mit Windows und Fedora (Download Unity Hub über [Flathub](https://flathub.org/apps/details/com.unity.UnityHub))
 
-## Projekt importieren in Unity
+### Projekt importieren in Unity
 
 Der Ordner [Simulation](/Simulation) ist ein Unity Projekt und kann als solches einfach in Unity Hub importiert werden. <br>
-Von Dort kann es dann auch mit einfachem klick gestartet werden.
+Von dort kann es dann auch mit einfachem Klick gestartet werden.
 
-## Inhalt und Starten der Simulationen
+### Inhalt und Starten der Simulationen
+
+TODO (?) or delete?
+
+### Kurzübersicht Bedienung Unity
+
+#### Projektverzeichnis
 
 Wenn Unity gestartet ist, so kann man unten Rechts und unten Mitte den Projektinhalt sehen.
 ![grafik](https://user-images.githubusercontent.com/77550792/203961108-56b0486d-4da9-48c0-a593-fba13c2bb564.png)
 
-### Projektübersicht
+#### Hierarchy
 
-Wichtig davon sind folgende Ordner:
+TODO
+
+#### Inspector
+
+TODO
+
+#### Simulation starten
+
+TODO
+
+#### Bedienung der Kamera
+
+TODO
+
+## Projektübersicht
+
+Im [Projektverzeichnis](#Projektverzeichnis) sind folgende Ordner wichtig:
 - [Assets/Scenes](/Simulation/Assets/Scenes): Hier liegen unsere Szenen drin, welche aus Szenarios und Test/Debug Szenen bestehen.
 - [Assets/Scripts/MessageDot](/Simulation/Assets/Scripts/MessageDot): Hier befinden sich die Scripte und Prefabs für die Nachrichten drin.
 - [Assets/Scripts/Node](/Simulation/Assets/Scripts/Node): Hier befinden sich die Scripte und Prefabs für die Nodes drin.
 - [Assets/Scripts/Waypoint](/Simulation/Assets/Scripts/Waypoint): Hier befinden sich die Scripte und Prefabs für die Wegpunkte drin. Diese können bei sowohl bei Nodes zur Wegffindung genutzt werden, als auch in Nachrichten als Gefahrenquellen.
 
-### Hierarchy
 
-TODO
-
-### Inspector
-
-TODO
 
 ### Szenen
 
@@ -55,11 +89,11 @@ Unsere Simulation hat verschiede Szenen, für verschiedene Zwecke:
 - dam_crack: Simulation eines Dammbruchs an der Mosel in Koblenz. Schwerpunkt liegt hier auf den THW Nodes, die am Moselufer patrolieren und alle anderen Nodes warnen, wenn sie in die Nähe kommen. So können sich fast alle Nodes aus der Nähe der Mosel entfernen. <br>
 ![grafik](https://user-images.githubusercontent.com/77550792/203975033-87139337-008a-4fd0-9063-7d63a5c63df8.png)
 
-### Nachrichten Typen
+### Nachrichtentypen
 
 TODO
 
-### Node Typen
+### Nodetypen
 
 TODO
 
