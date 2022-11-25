@@ -20,7 +20,7 @@ Realisiert wird dies mit Unity.
   - [Szenen](#szenen)
   - [Nachrichtentypen](#nachrichtentypen)
   - [Nodetypen](#nodetypen)
-  - [UI / Camera](#ui-/-camera)
+  - [UI / Camera](#ui--camera)
 - [Referenzen](#referenzen)
 - [Disclaimer](#disclaimer)
 
@@ -49,19 +49,30 @@ Wenn Unity gestartet ist, so kann man unten Rechts und unten Mitte den Projektin
 
 #### Hierarchy
 
-TODO
+Die Hierarchie ist auf der linken Seite. In ihr können die aktiven Elemente angeklickt und dann mit Hilfe des [Inspectors](#inspector) manipuliert werden.
+![grafik](https://user-images.githubusercontent.com/77550792/204004133-26320d7e-8e7c-467e-ac2b-fa32533f43de.png)
 
 #### Inspector
 
-TODO
+Der Inspector ist auf der rechten Seite und in ihm können die Eigenschaften von Elementen gesehen und verändert werden. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204005178-814a01ea-0375-44dc-9420-507a64f243b3.png) <br>
+Besonders wichtig ist da das [Create Message Script](/Simulation/Assets/Scripts/MessageDot/createMessageScript.cs) auf Funktürmen und THW Nodes, wo der Inhalt von neu zu erstellenden Nachrichten eingetragen wird. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204005076-444dbf61-086a-433c-8ef5-76645faa587a.png)
 
 #### Simulation starten
 
-TODO
+Nach der Auswahl einer [Szene](#szenen) kann diese Szene einfach durch Klicken auf den Play Button oben in der Mitte gestartet werden. <br>
+Genauso kann sie auch Pausiert oder Beendet werden
 
 #### Bedienung der Kamera
 
-TODO
+Die Kamera kann während der Simulation bewegt werden. Zum Rein- und Rauszoomen wird das Mausrad benutzt. Zur Bewegung nach Oben, Unten, Links und Rechts werden die Pfeiltasten benutzt. <br>
+
+Mit Linksklick können Nodes angewählt werden. Dann erscheint Links im Bild eine Übersicht mit allen Nachrichten, die diese Node kennt. Angezeigt werden dessen Namen (Feld: `Content`) und das Risiko Niveau (Feld: `Risk Lvl`) <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204010565-ce781082-3ea3-4177-b833-167d6c248f39.png) <br>
+Auf diese Nachrichten kann man wieder draufklicken um den genauen Inhalt zu sehen. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204008882-2b48348a-7b85-4d21-b972-14494995780f.png) <br>
+Abwählen kann man die Nachrichten und Nodes dann wieder mit einem Rechtsklick.
 
 ## Projektübersicht
 
@@ -69,9 +80,7 @@ Im [Projektverzeichnis](#Projektverzeichnis) sind folgende Ordner wichtig:
 - [Assets/Scenes](/Simulation/Assets/Scenes): Hier liegen unsere Szenen drin, welche aus Szenarios und Test/Debug Szenen bestehen.
 - [Assets/Scripts/MessageDot](/Simulation/Assets/Scripts/MessageDot): Hier befinden sich die Scripte und Prefabs für die Nachrichten drin.
 - [Assets/Scripts/Node](/Simulation/Assets/Scripts/Node): Hier befinden sich die Scripte und Prefabs für die Nodes drin.
-- [Assets/Scripts/Waypoint](/Simulation/Assets/Scripts/Waypoint): Hier befinden sich die Scripte und Prefabs für die Wegpunkte drin. Diese können bei sowohl bei Nodes zur Wegffindung genutzt werden, als auch in Nachrichten als Gefahrenquellen.
-
-
+- [Assets/Scripts/Waypoint](/Simulation/Assets/Scripts/Waypoint): Hier befinden sich die Scripte und Prefabs für die Wegpunkte drin. Diese können sowohl bei Nodes zur Wegffindung genutzt werden, als auch in Nachrichten als Gefahrenquellen.
 
 ### Szenen
 
@@ -91,7 +100,17 @@ Unsere Simulation hat verschiede Szenen, für verschiedene Zwecke:
 
 ### Nachrichtentypen
 
-TODO
+Verschickte Nachrichten werden farblich anhand ihres Types Markiert. Diese Farben sind konsistent mit den [Nodefarben](#nodetypen). <br>
+Folgende Typen gibt es:
+- allgemeine Nachricht / Vorlage: Dieser Typ ist nicht zum Versenden gedacht, sondern wird als Gemeinsames Objekt für alle Nachrichten genutzt. Alle MessageDot Prefabs erben von ihm <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204012696-e6833cb6-4b36-447c-b15b-87eac8765a76.png)
+- Bluetooth Nachricht: Diese Typ wird zum Versenden von Bluetooth Nachrichten benutzt. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204012813-11b239da-9784-4d5c-ad3b-2c6f0351d5dc.png)
+- Funkturm Nachricht: Dieser Typ wird zum Versenden von Funkturm / Cellular Broadcast Nachrichten benutzt. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204012248-d1c741bc-91a6-44e7-88ac-91a2f3fac9a9.png)
+- W-Lan / WiFi Nachricht: Dieser Typ wird zum versenden von WiFi Nachrichten bbenutzt. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/204012503-a942d05b-7a4a-483d-8c38-fa17323b3cc5.png)
+
 
 ### Nodetypen
 
