@@ -21,7 +21,7 @@ Realisiert wird dies mit Unity.
   - [Szenen](#szenen)
   - [Nachrichtentypen](#nachrichtentypen)
   - [Nodetypen](#nodetypen)
-  - [UI / Camera](#ui--camera)
+  - [Wegpunkte](#wegpunkte)
 - [Referenzen](#referenzen)
 - [Disclaimer](#disclaimer)
 
@@ -150,9 +150,13 @@ Zusätzlich kann sie aber auch neue Nachrichten spammen, wie in [Erstellen von N
 Ihr Ziel ist es zuerst ein normales Mitglied im Netzwerk zu sein und dann beim Auslösen das ganze Netzwerk zu überlasten durch eine Masse an Nachrichten. <br>
 ![grafik](https://user-images.githubusercontent.com/77550792/206220722-67df78c1-f053-4271-b72d-4c8cf618e82f.png)
 
-### UI / Camera
+### Wegpunkte
 
-TODO
+Als Wegpunkte dienen die Targets in [Assets/Scripts/Waypoint](/Simulation/Assets/Scripts/Waypoint). Diese Können beliebig auf der Karte angelegt werden. Nachbar Wegpunkte werden mit Hilfe des [Waypoint Neighbors](Simulation/Assets/Scripts/Waypoint/WaypointNeighbors.cs) Skript im [Inspector](#inspector) verbunden. Ein Weg kann nur in die Richtung genutzt werden, wie er in der Neighbors Liste ist. Um ihn in beide Richtungen nutzen zu können müssen Targets sich gegenseitig als Nachbarn haben.
+
+Zusätzlich können Wegpunkte auch als Gefahren genutzt werden. Dafür werden sie im [Create Message Script](/Simulation/Assets/Scripts/MessageDot/createMessageScript.cs) einfach in der Liste `Danger Nodes` als Element eingefügt. <br>
+Alle Nodes, die diese Nachricht dann bekommen, versuchen auf den Wegen der anderen Wegpunkte möglichst weit von den Gefahrpunkten zu fliehen. <br>
+THW Nodes haben allerdings auch einen Modus, wo sie zur Gefahr hinlaufen. Diese Patrollieren dann zufällig zwischen den ihnen bekannten Gefahren.
 
 ## Referenzen
 
