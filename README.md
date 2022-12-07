@@ -16,6 +16,7 @@ Realisiert wird dies mit Unity.
     - [Inspector](#inspector)
     - [Simulation starten](#simulation-starten)
     - [Bedienung der Kamera](#bedienung-der-kamera)
+    - [Erstellen von Nachrichten](#erstellen-von-nachrichten)
 - [Projektübersicht](#projektübersicht)
   - [Szenen](#szenen)
   - [Nachrichtentypen](#nachrichtentypen)
@@ -74,6 +75,15 @@ Auf diese Nachrichten kann man wieder draufklicken um den genauen Inhalt zu sehe
 ![grafik](https://user-images.githubusercontent.com/77550792/204008882-2b48348a-7b85-4d21-b972-14494995780f.png) <br>
 Abwählen kann man die Nachrichten und Nodes dann wieder mit einem Rechtsklick.
 
+#### Erstellen von Nachrichten
+Nachrichten werden von Funktürmen und THW Nodes mit Hilfe des Skripts [Create Message Script](/Simulation/Assets/Scripts/MessageDot/createMessageScript.cs) im [Inspector](#inspector) erstellt. In unseren Szenarios sind dort immer schon sinnvolle Werte eingetragen, dem Szenario entsprechend. <br>
+Versendet werden können diese Nachrichten für alle Nodes mit diesem Skript gleichzeitig durch drücken der Leertaste. <br>
+Will man allerdings nur mit einzelnen Nodes eine Nachricht versenden, so muss man bei den anderen berechtigten Nodes das Skript deaktivieren. <br>
+
+Die Spamnode erstellt intern automatisch Nachrichten. Zur Abstraktion zu den normalen Nachrichten, haben Spamnachhrichten als Bedrohung den Grund "Alienangriff" und das Bedrohungslevel 9001. <br>
+Die Spamnode sendet jedes Mal die gleiche Nachricht, aber jeweils mit einer anderen, random ID, weshalb diese Nachrichten trotzdem von anderen Nodes als eine andere, neue Nachricht erkannt werden. <br>
+Gestartet und Gestoppt werden kann die Aktivität der Spam Node durch drücken der Taste P.
+
 ## Projektübersicht
 
 Im [Projektverzeichnis](#Projektverzeichnis) sind folgende Ordner wichtig:
@@ -108,13 +118,37 @@ Folgende Typen gibt es:
 ![grafik](https://user-images.githubusercontent.com/77550792/204012813-11b239da-9784-4d5c-ad3b-2c6f0351d5dc.png)
 - Funkturm Nachricht: Dieser Typ wird zum Versenden von Funkturm / Cellular Broadcast Nachrichten benutzt. <br>
 ![grafik](https://user-images.githubusercontent.com/77550792/204012248-d1c741bc-91a6-44e7-88ac-91a2f3fac9a9.png)
-- W-Lan / WiFi Nachricht: Dieser Typ wird zum versenden von WiFi Nachrichten bbenutzt. <br>
+- W-Lan / WiFi Nachricht: Dieser Typ wird zum versenden von WiFi Nachrichten benutzt. <br>
 ![grafik](https://user-images.githubusercontent.com/77550792/204012503-a942d05b-7a4a-483d-8c38-fa17323b3cc5.png)
 
 
 ### Nodetypen
 
-TODO
+Nodes Repräsentieren Endpunkte und Geräte in der Kommunikation. Sie können verschiedene Nachrichtentypen empfangen und senden. Manche Nodes können auch Nachrichten erstellen. <br>
+Die Farben der Nodes orientieren sich an denen der unterstützen Nachrichtentypen. <br>
+Alle Nodes haben Energybalken, die verbraucht werden beim Senden von Nachrichten. <br>
+Folgende Nodetypen gibt es:
+- Node God: Diese Node ist eine allmächtige Node, die alle Kommunikationstypen empfangen und senden kann. Sie ist nicht für den Einsatz in der Simulation gedacht, sondern dient als Basis aller anderen Nodes. Verändert man ein Attribut in dieser, so verändert man es in allen Nodes. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206210425-d1dfdc99-2bc9-45e5-9612-3b9fe0cdcf34.png)
+- Node Funkturm: Diese Node kann nur Cellular Nachrichten versenden und empfangen. Das Empfangen ist aber kein realistischer Zweck, sondern eher zum Testen. Funktürme können mit Hilfe des Skripts [Create Message Script](/Simulation/Assets/Scripts/MessageDot/createMessageScript.cs) im [Inspector](#inspector) Nachrichten erstellen, wie in [Erstellen von Nachrichten](#erstellen-von-nachrichten) beschrieben.<br>
+![grafik](https://user-images.githubusercontent.com/77550792/206214336-eb30c435-67f4-490f-ba9e-38660ff53fd1.png)
+- Node BTOnly: Diese Node kann nur Bluetooth Nachrichten empfangen und senden. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206211330-0882b257-2c3b-4cd4-91dc-1d00a4f46a22.png)
+- Node BT+getCell: Diese Node kann Bluetooth und Cellular Nachrichten empfangen, aber nur Bluetooth Nachrichten wieder versenden. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206218272-c37d2be7-92b7-4f43-8dc6-6f56ff439f4f.png)
+- Node WifiOnly: Diese Node kann nur WiFi / WLAN Nachrichten empfangen und senden. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206218569-16b4daa0-5f34-4246-8c1a-41b4cfc0c87e.png)
+- Node Wifi+getCell: Diese Node kann WiFi / WLAN und Cellular Nachrichten empfangen, aber nur WiFi / WLAN Nachrichten wieder versenden. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206218833-6a8b3f8e-988e-4a79-958e-8672b07375da.png)
+- Node Normal: Diese Node kann Bluetooth, WiFi / WLAN und Cellular Nachrichten empfangen und Bluetooth und WiFi / WLAN Nachrichten wieder versenden. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206219827-d5dbd40d-1932-4dfd-902e-8aca27e95615.png)
+- Node THW: Diese Node kann Bluetooth, WiFi / WLAN und Cellular Nachrichten empfangen und Bluetooth und WiFi / WLAN Nachrichten wieder versenden. <br>
+Zusätzlich kann sie noch Nachrichten erstellen, mit Hilfe des Skripts [Create Message Script](/Simulation/Assets/Scripts/MessageDot/createMessageScript.cs) im [Inspector](#inspector), wie in [Erstellen von Nachrichten](#erstellen-von-nachrichten) beschrieben.<br>
+![grafik](https://user-images.githubusercontent.com/77550792/206220064-6c89e128-e9f1-4e5f-b5c9-dd5e2b6b29e2.png)
+- Node Spam: Diese Node kann Bluetooth, WiFi / WLAN und Cellular Nachrichten empfangen und Bluetooth und WiFi / WLAN Nachrichten wieder versenden. <br>
+Zusätzlich kann sie aber auch neue Nachrichten spammen, wie in [Erstellen von Nachrichten](#erstellen-von-nachrichten) beschrieben.<br>
+Ihr Ziel ist es zuerst ein normales Mitglied im Netzwerk zu sein und dann beim Auslösen das ganze Netzwerk zu überlasten durch eine Masse an Nachrichten. <br>
+![grafik](https://user-images.githubusercontent.com/77550792/206220722-67df78c1-f053-4271-b72d-4c8cf618e82f.png)
 
 ### UI / Camera
 
