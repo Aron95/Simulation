@@ -9,7 +9,6 @@ Realisiert wird dies mit Unity.
 ## Inhaltsverzeichnis
 - [Unity](#unity)
   - [Projekt importieren in Unity](#projekt-importieren-in-unity)
-  - [Inhalt und Starten der Simulationen](#inhalt-und-starten-der-simulationen)
   - [Kurzübersicht Bedienung Unity](#kurzübersicht-bedienung-unity)
     - [Projektverzeichnis](#projektverzeichnis)
     - [Hierarchy](#hierarchy)
@@ -36,10 +35,6 @@ Getestet wurde es mit Windows und Fedora (Download Unity Hub über [Flathub](htt
 
 Der Ordner [Simulation](/Simulation) ist ein Unity Projekt und kann als solches einfach in Unity Hub importiert werden. <br>
 Von dort kann es dann auch mit einfachem Klick gestartet werden.
-
-### Inhalt und Starten der Simulationen
-
-TODO (?) or delete?
 
 ### Kurzübersicht Bedienung Unity
 
@@ -77,7 +72,7 @@ Abwählen kann man die Nachrichten und Nodes dann wieder mit einem Rechtsklick.
 
 #### Erstellen von Nachrichten
 Nachrichten werden von Funktürmen und THW Nodes mit Hilfe des Skripts [Create Message Script](/Simulation/Assets/Scripts/MessageDot/createMessageScript.cs) im [Inspector](#inspector) erstellt. In unseren Szenarios sind dort immer schon sinnvolle Werte eingetragen, dem Szenario entsprechend. <br>
-Versendet werden können diese Nachrichten für alle Nodes mit diesem Skript gleichzeitig durch drücken der Leertaste. <br>
+Versendet werden können diese Nachrichten für alle Nodes mit diesem Skript gleichzeitig durch Drücken der Leertaste. <br>
 Will man allerdings nur mit einzelnen Nodes eine Nachricht versenden, so muss man bei den anderen berechtigten Nodes das Skript deaktivieren. <br>
 
 Die Spamnode erstellt intern automatisch Nachrichten. Zur Abstraktion zu den normalen Nachrichten, haben Spamnachhrichten als Bedrohung den Grund "Alienangriff" und das Bedrohungslevel 9001. <br>
@@ -86,11 +81,11 @@ Gestartet und Gestoppt werden kann die Aktivität der Spam Node durch drücken d
 
 ## Projektübersicht
 
-Im [Projektverzeichnis](#Projektverzeichnis) sind folgende Ordner wichtig:
-- [Assets/Scenes](/Simulation/Assets/Scenes): Hier liegen unsere Szenen drin, welche aus Szenarios und Test/Debug Szenen bestehen.
-- [Assets/Scripts/MessageDot](/Simulation/Assets/Scripts/MessageDot): Hier befinden sich die Scripte und Prefabs für die Nachrichten drin.
-- [Assets/Scripts/Node](/Simulation/Assets/Scripts/Node): Hier befinden sich die Scripte und Prefabs für die Nodes drin.
-- [Assets/Scripts/Waypoint](/Simulation/Assets/Scripts/Waypoint): Hier befinden sich die Scripte und Prefabs für die Wegpunkte drin. Diese können sowohl bei Nodes zur Wegffindung genutzt werden, als auch in Nachrichten als Gefahrenquellen.
+Im [Projektverzeichnis](#projektverzeichnis) sind folgende Ordner wichtig:
+- [Assets/Scenes](/Simulation/Assets/Scenes): Hier liegen unsere [Szenen](#szenen) drin, welche aus Szenarios und Test/Debug Szenen bestehen.
+- [Assets/Scripts/MessageDot](/Simulation/Assets/Scripts/MessageDot): Hier befinden sich die Scripte und Prefabs für die [Nachrichten](#nachrichtentypen) drin.
+- [Assets/Scripts/Node](/Simulation/Assets/Scripts/Node): Hier befinden sich die Scripte und Prefabs für die [Nodes](#nodetypen) drin.
+- [Assets/Scripts/Waypoint](/Simulation/Assets/Scripts/Waypoint): Hier befinden sich die Scripte und Prefabs für die [Wegpunkte](#wegpunkte) drin. Diese können sowohl bei Nodes zur Wegfindung genutzt werden, als auch in Nachrichten als Gefahrenquellen.
 
 ### Szenen
 
@@ -125,7 +120,7 @@ Folgende Typen gibt es:
 ### Nodetypen
 
 Nodes Repräsentieren Endpunkte und Geräte in der Kommunikation. Sie können verschiedene Nachrichtentypen empfangen und senden. Manche Nodes können auch Nachrichten erstellen. <br>
-Die Farben der Nodes orientieren sich an denen der unterstützen Nachrichtentypen. <br>
+Die Farben der Nodes orientieren sich an denen der unterstützen [Nachrichtentypen](#nachrichtentypen). <br>
 Alle Nodes haben Energybalken, die verbraucht werden beim Senden von Nachrichten. <br>
 Folgende Nodetypen gibt es:
 - Node God: Diese Node ist eine allmächtige Node, die alle Kommunikationstypen empfangen und senden kann. Sie ist nicht für den Einsatz in der Simulation gedacht, sondern dient als Basis aller anderen Nodes. Verändert man ein Attribut in dieser, so verändert man es in allen Nodes. <br>
